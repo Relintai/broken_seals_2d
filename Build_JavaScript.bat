@@ -2,6 +2,6 @@ rem This Source Code Form is subject to the terms of the Mozilla Public License,
 
 cd ./engine
 
-call scons -j2 platform=javascript tools=no target=release_debug entities_2d=no
+call scons -j2 platform=javascript tools=no target=release_debug entities_2d=yes
 
 cd ..
