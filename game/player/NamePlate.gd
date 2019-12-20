@@ -68,41 +68,29 @@ func _process(delta):
 			interpolating = false
 
 	
-	var position : Vector3 = entity.translation
-	
-	var camera : Camera = get_tree().get_root().get_camera() as Camera
-	
-	if camera == null:
-		return
-	
-	var cam_pos : Vector3 = camera.global_transform.xform(Vector3())
-	var dstv : Vector3 = cam_pos - position
-	dstv.y = 0
-	var dst : float = dstv.length_squared()
+	var position : Vector2 = entity.position
 
-	if dst > max_distance_squared:
-		if visible:
-			hide()
-		return
-		
-	var cam_facing : Vector3 = -camera.global_transform.basis.z
-	var d : float = cam_facing.dot(dstv)
-		
-	if d > 0:
-		if visible:
-			hide()
-		return
-	else:
-		if not visible:
-			show()
-		
+#	if dst > max_distance_squared:
+#		if visible:
+#			hide()
+#		return
+#
+#
+#	if d > 0:
+#		if visible:
+#			hide()
+#		return
+#	else:
+#		if not visible:
+#			show()
+#
 		
 	position.y += 1.9
-	var screen_position : Vector2 = camera.unproject_position(position)
+#	var screen_position : Vector2 = camera.unproject_position(position)
 	
-	var new_pos : Vector2 = Vector2(screen_position.x - (rect_size.x / 2.0) * rect_scale.x, screen_position.y - (rect_size.y) * rect_scale.y)
+#	var new_pos : Vector2 = Vector2(screen_position.x - (rect_size.x / 2.0) * rect_scale.x, screen_position.y - (rect_size.y) * rect_scale.y)
 	
-	set_position(new_pos)
+	set_position(position)
 
 	
 func set_max_distance(var value : float) -> void:

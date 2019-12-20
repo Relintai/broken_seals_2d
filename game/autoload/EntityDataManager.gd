@@ -55,7 +55,7 @@ func despawn_for(player : Entity, target: Entity) -> void:
 #	print("despawnfor " + target.name)
 	rpc_id(player.get_network_master(), "creceive_despawn_for", target.get_path())
 	
-remote func creceive_spawn_for(data: String, global_name : String, position: Vector3) -> void:
+remote func creceive_spawn_for(data: String, global_name : String, position: Vector2) -> void:
 #	print("recspawnfor " + global_name)
 	var entity : Entity = networked_player_scene.instance()
 
@@ -79,7 +79,7 @@ remote func creceive_despawn_for(path : NodePath) -> void:
 	if ent:
 		ent.queue_free()
 
-func spawn_networked_player_from_data(data : String, position : Vector3, network_owner : int) -> Entity:
+func spawn_networked_player_from_data(data : String, position : Vector2, network_owner : int) -> Entity:
 	var entity : Entity = networked_player_scene.instance()
 
 	_next_entity_guid += 1
@@ -102,7 +102,7 @@ func spawn_networked_player_from_data(data : String, position : Vector3, network
 	
 	return entity
 	
-puppet func spawn_owned_player(data : String, position : Vector3) -> void:
+puppet func spawn_owned_player(data : String, position : Vector2) -> void:
 	var entity : Entity = player_scene.instance()
 
 	var spawn_parent = _spawn_parent.current_scene
@@ -118,7 +118,7 @@ puppet func spawn_owned_player(data : String, position : Vector3) -> void:
 	Logger.info("Player spawned ")
 
 
-func load_player(file_name : String, position : Vector3, network_owner : int) -> Entity:
+func load_player(file_name : String, position : Vector2, network_owner : int) -> Entity:
 #	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 #
 #	var cls : EntityData = Entities.get_player_character_data(class_id)
@@ -142,7 +142,7 @@ func load_player(file_name : String, position : Vector3, network_owner : int) ->
 
 	entity.from_dict(load_file(file_name))
 
-	entity.translation = position
+	entity.position = position
 #	entity.initialize(createinfo)
 	entity.set_network_master(network_owner)
 			
@@ -187,7 +187,7 @@ func spawn_player_for_menu(class_id : int, name : String, parent : Node) -> Enti
 		
 	return entity
 
-func spawn_networked_player(class_id : int,  position : Vector3, name : String, node_name : String, sid : int) -> Entity:
+func spawn_networked_player(class_id : int,  position : Vector2, name : String, node_name : String, sid : int) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 	
 	var cls : EntityData = Entities.get_entity_data(class_id)
@@ -218,7 +218,7 @@ func spawn_networked_player(class_id : int,  position : Vector3, name : String, 
 	
 	return entity
 	
-func spawn_player(class_id : int,  position : Vector3, name : String, node_name : String, network_owner : int) -> Entity:
+func spawn_player(class_id : int,  position : Vector2, name : String, node_name : String, network_owner : int) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 	
 	var cls : EntityData = Entities.get_player_character_data(class_id)
@@ -248,7 +248,7 @@ func spawn_player(class_id : int,  position : Vector3, name : String, node_name 
 	
 	return entity
 	
-func spawn_mob(class_id : int, level : int, position : Vector3) -> Entity:
+func spawn_mob(class_id : int, level : int, position : Vector2) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 	
 	var cls : EntityData = Entities.get_entity_data(class_id)
@@ -275,7 +275,7 @@ func spawn_mob(class_id : int, level : int, position : Vector3) -> Entity:
 	
 	return entity
 	
-func spawn(createinfo : EntityCreateInfo, networked : bool, position : Vector3, node_name : String = "") -> Entity:
+func spawn(createinfo : EntityCreateInfo, networked : bool, position : Vector2, node_name : String = "") -> Entity:
 	var entity_node : Entity = null
 	
 	if not networked:

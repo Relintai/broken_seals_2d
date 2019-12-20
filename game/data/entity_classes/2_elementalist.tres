@@ -108,7 +108,7 @@ stat_id = 35
 
 [sub_resource type="StatDataEntry" id=31]
 stat_id = 1
-base = 4.2
+base = 60.0
 
 [sub_resource type="StatDataEntry" id=32]
 stat_id = 17

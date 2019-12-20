@@ -162,10 +162,10 @@ remote func crequest_select_class(info : Dictionary) -> void:
 		if sid == 0:
 			sid = 1
 			
-		rpc("cspawn_player", info, sid, Vector3(10, 10, 10))
+		rpc("cspawn_player", info, sid, Vector2(10, 10))
 		
 
-remotesync func cspawn_player(info : Dictionary, sid : int, pos : Vector3):
+remotesync func cspawn_player(info : Dictionary, sid : int, pos : Vector2):
 	Logger.verbose("NetworkManager cspawn_player")
 	
 	if sid == get_tree().get_network_unique_id():
@@ -193,7 +193,7 @@ func upload_character(data : String) -> void:
 	rpc_id(1, "sreceive_upload_character", data)
 	
 master func sreceive_upload_character(data: String) -> void:
-	Entities.spawn_networked_player_from_data(data, Vector3(0, 10, 0), multiplayer.get_rpc_sender_id())
+	Entities.spawn_networked_player_from_data(data, Vector2(0, 0), multiplayer.get_rpc_sender_id())
 	
 func set_terrarin_player():
 	Logger.verbose("NetworkManager cspawn_player")

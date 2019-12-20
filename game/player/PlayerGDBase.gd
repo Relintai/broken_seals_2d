@@ -33,7 +33,7 @@ func _ready():
 	_shape.radius = 50
 
 	_query = Physics2DShapeQueryParameters.new()
-	_query.collision_mask = 2
+	_query.collision_layer = 2
 	_query.exclude = [ self ]
 	_query.shape_rid = _shape.get_rid()
 	
@@ -100,5 +100,9 @@ func update_visibility() -> void:
 		adds_sees(ent)
 
 
-
+remote func set_position_remote(pos : Vector2) -> void:
+	if get_tree().is_network_server():
+		rpc("set_position_remote", pos)
+	print(position)
+	position = pos
 

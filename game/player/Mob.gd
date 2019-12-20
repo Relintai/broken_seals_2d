@@ -30,38 +30,32 @@ var max_visible_distance_squared : float = max_visible_distance * max_visible_di
 const ray_length = 1000
 const ACCEL : float = 100.0
 const DEACCEL : float = 100.0
-const GRAVITY : float = -24.8
-const JUMP_SPEED : float = 3.8
-const MAX_SLOPE_ANGLE : float = 40.0
-
-#var process_gravity : bool = true
 
 var _on : bool = true
 
 var y_rot : float = 0.0
 
-var vel : Vector3 = Vector3()
-var dir : Vector3 = Vector3()
+var vel : Vector2 = Vector2()
+var dir : Vector2 = Vector2()
 var target_movement_direction : Vector2 = Vector2()
 
-var animation_tree : AnimationTree
-var anim_node_state_machine : AnimationNodeStateMachinePlayback = null
 var animation_run : bool = false
 
 var moving : bool = false
 var sleep : bool = false
+
 var dead : bool = false
 var death_timer : float = 0
 
+var path : = PoolVector2Array()
+var follow_path = false
+
+var frame : int = 0
+
 func _ready() -> void:
-	animation_tree = get_character_skeleton().get_animation_tree()
-	
-	if animation_tree != null:
-		anim_node_state_machine = animation_tree["parameters/playback"]
-
-	animation_tree["parameters/run-loop/blend_position"] = Vector2(0, -1)
-
 	ai_state = EntityEnums.AI_STATE_PATROL
+	
+	frame = randi() % 10
 
 	set_process(true)
 	set_physics_process(true)
@@ -75,36 +69,27 @@ func _process(delta : float) -> void:
 			queue_free()
 		
 		return
+		
+	frame += 1
 	
-	var camera : Camera = get_tree().get_root().get_camera() as Camera
-	
-	if camera == null:
+	if frame < 10:
 		return
+		
+	frame = 0
 	
-	var cam_pos : Vector2 = camera.global_transform.xform(Vector3())
-	var dstv : Vector2 = cam_pos - position
-	dstv.y = 0
-	var dst : float = dstv.length_squared()
+#	print(get_tree().root.get_visible_rect())
+	var vpos : Vector2 = -get_tree().root.canvas_transform.get_origin() - position
+	var l : float = vpos.length_squared()
+	var rs : float = get_tree().root.size.x * get_tree().root.size.x
 
-	if dst > max_visible_distance_squared:
-		if visible:
-			hide()
-		return
-	else:
+	if l < rs:
 		if not visible:
 			show()
-		
-	#TODO check later if this gives a performance boost
-#	var cam_facing : Vector3 = -camera.global_transform.basis.z
-#	var d : float = cam_facing.dot(dstv)
-#
-#	if d > 0:
-#		if visible:
-#			hide()
-#		return
-#	else:
-#		if not visible:
-#			show()
+			set_physics_process(true)
+	else:
+		if visible:
+			hide()
+			set_physics_process(false)
 	
 
 func _physics_process(delta : float) -> void:
@@ -119,6 +104,44 @@ func _physics_process(delta : float) -> void:
 
 	process_movement(delta)
 
+func move_along_path(distance : float)  -> void:
+	var start_point : = position
+	
+	for i in range(path.size()):
+		var distance_to_next : = start_point.distance_to(path[0])
+		
+		if distance <= distance_to_next and distance >= 0.0:
+			position = start_point.linear_interpolate(path[0], distance / distance_to_next)
+			break
+		elif distance <= 0.0:
+			position = path[0]
+			follow_path = false
+			break
+			
+		#if line2d and use_line_path:
+		#	line2d.points = path
+			
+		distance -= distance_to_next
+		start_point = path[0]
+		path.remove(0)
+		
+		if path.size() == 0:
+			follow_path = false
+		
+	
+func set_path(value : PoolVector2Array) -> void:
+	path = value
+	
+	#if line2d and use_line_path:
+	#	line2d.points = value
+		
+		
+	if value.size() == 0:
+		return
+		
+	follow_path = true
+
+
 func process_movement(delta : float) -> void:
 #	if starget != null:
 #		look_at(starget.translation, Vector3(0, 1, 0))
@@ -128,51 +151,22 @@ func process_movement(delta : float) -> void:
 	if state & EntityEnums.ENTITY_STATE_TYPE_FLAG_ROOT != 0 or state & EntityEnums.ENTITY_STATE_TYPE_FLAG_STUN != 0:
 		moving = false
 		return
-	
+		
 	if target_movement_direction.length_squared() > 0.1:
-		if anim_node_state_machine != null and not animation_run:
-			anim_node_state_machine.travel("run-loop")
-			animation_run = true
-		
 		target_movement_direction = target_movement_direction.normalized()
+		
+		get_character_skeleton().update_facing(dir)
+		
 		moving = true
 	else:
-		if anim_node_state_machine != null and animation_run:
-			anim_node_state_machine.travel("idle-loop")
-			animation_run = false
-			
-		moving = false
-	
-	if target_movement_direction.x > 0.1 or target_movement_direction.y > 0.1 or target_movement_direction.x < -0.1 or target_movement_direction.y < -0.1:
-		y_rot = Vector2(0, 1).angle_to(target_movement_direction)
-		
-		var forward : Vector3 = Vector3(0, 0, 1).rotated(Vector3(0, 1, 0), deg2rad(y_rot)) 
-		var right : Vector3 = forward.cross(Vector3(0, 1, 0)) * -target_movement_direction.x
-		forward *= target_movement_direction.y #only potentially make it zero after getting the right vector
-	
-		dir = forward
-		dir += right
-		
-		if dir.length_squared() > 0.1:
-			dir = dir.normalized()
-			
-		moving = true
-	else:
-		dir = Vector3()
 		moving = false
 		
-	if not moving and sleep:
-		return
-		
-	if moving and sleep:
-		sleep = false
+	get_character_skeleton().get_animation_tree().set("parameters/walking/blend_amount", target_movement_direction.length())
 
-	vel.y += delta * GRAVITY
-
-	var hvel : Vector3 = vel
+	var hvel : Vector2 = vel
 	hvel.y = 0
 
-	var target : Vector3 = dir
+	var target : Vector2 = dir
 	target *= get_speed().ccurrent
 
 	var accel
@@ -181,18 +175,15 @@ func process_movement(delta : float) -> void:
 	else:
 		accel = DEACCEL
 
-	hvel = hvel.linear_interpolate(target, accel * delta) as Vector3
-	vel.x = hvel.x
-	vel.z = hvel.z
+	hvel = hvel.linear_interpolate(target, accel*delta)
 	
-	var facing : Vector3 = vel
-	facing.y = 0
+	if hvel.length_squared() < 0.1:
+		return
 	
-#	vel = move_and_slide(vel, Vector3(0,1,0), false, 4, deg2rad(MAX_SLOPE_ANGLE))
+	vel = hvel
+	vel = move_and_slide(vel)
+	
 	sset_position(position, rotation)
-	
-	if vel.length_squared() < 0.12:
-		sleep = true
 
 
 func sstart_attack(entity : Entity) -> void:
@@ -239,8 +230,6 @@ func _son_death():
 	
 	sentity_interaction_type = EntityEnums.ENITIY_INTERACTION_TYPE_LOOT
 	ai_state = EntityEnums.AI_STATE_OFF
-	
-	anim_node_state_machine.travel("dead")
 	
 #	set_process(false)
 	set_physics_process(false)
