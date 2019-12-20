@@ -302,7 +302,7 @@ func spawn(createinfo : EntityCreateInfo, networked : bool, position : Vector2, 
 	spawn_parent.add_child(entity_node)
 	entity_node.owner = spawn_parent
 
-	entity_node.translation = position
+	entity_node.position = position
 		
 	entity_node.initialize(createinfo)
 	

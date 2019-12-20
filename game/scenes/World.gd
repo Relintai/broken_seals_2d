@@ -21,7 +21,14 @@ func load_character(file_name: String) -> void:
 #	_player.set_physics_process(false)
 	
 	Server.sset_seed(_player.sseed)
+	
+	generate()
 
+
+func generate() -> void:
+	for x in range(-5, 5):
+		for y in range(-5, 5):
+			Entities.spawn_mob(1, 50, Vector2(x * 200, y * 200))
 
 func save() -> void:
 	if _player == null or _player_file_name == "":

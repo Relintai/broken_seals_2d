@@ -199,9 +199,9 @@ func _unhandled_input(event: InputEvent) -> void:
 #			if event.button_index == BUTTON_WHEEL_DOWN:
 #				camera_pivot.camera_distance_set_delta(0.2)
 		
-		if not event.pressed and event.button_index == BUTTON_LEFT and event.device != -1:
-			if mouse_down_delta.length() < MOUSE_TARGET_MAX_OFFSET:
-				target(event.position)
+#		if not event.pressed and event.button_index == BUTTON_LEFT and event.device != -1:
+#			if mouse_down_delta.length() < MOUSE_TARGET_MAX_OFFSET:
+#				target(event.position)
 		
 		if event.pressed and event.button_index == BUTTON_RIGHT and event.device != -1:
 			target(event.position)
@@ -215,8 +215,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func target(position : Vector2):
 	var space_state = get_world_2d().direct_space_state
-	#var results = space_state.intersect_point(map.make_canvas_position_local(position), 32, [], 2)
-	var results = space_state.intersect_point(position, 32, [], 2)
+	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], 2)
+	#var results = space_state.intersect_point(position, 32, [], 2)
 
 	if results:
 		for result in results:
@@ -231,8 +231,8 @@ func target(position : Vector2):
 		
 func cmouseover(event):
 	var space_state = get_world_2d().direct_space_state
-	#var results = space_state.intersect_point(map.make_canvas_position_local(position), 32, [], 2)
-	var results = space_state.intersect_point(position, 32, [], 2)
+	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], 2)
+	#var results = space_state.intersect_point(position, 32, [], 2)
 
 	if results:
 		for result in results:
