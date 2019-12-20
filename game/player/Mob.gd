@@ -244,10 +244,10 @@ func _son_damage_dealt(data):
 
 func _con_damage_dealt(info : SpellDamageInfo) -> void:
 #	if info.dealer == 
-	WorldNumbers.damage(position, 1.6, info.damage, info.crit)
+	WorldNumbers.damage(position, 90, info.damage, info.crit)
 
 func _con_heal_dealt(info : SpellHealInfo) -> void:
-	WorldNumbers.heal(position, 1.6, info.heal, info.crit)
+	WorldNumbers.heal(position, 90, info.heal, info.crit)
 
 func _moved() -> void:
 	if sis_casting():

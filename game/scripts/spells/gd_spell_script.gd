@@ -139,22 +139,22 @@ func handle_gcd(info : SpellCastInfo) -> void:
 func add_spell_cast_effect(info : SpellCastInfo) -> void:
 	var basic_spell_effect : SpellEffectVisualBasic = visual_spell_effects as SpellEffectVisualBasic
 		
-	if basic_spell_effect != null:
-		if basic_spell_effect.spell_cast_effect_left_hand != null:
-			info.caster.get_character_skeleton().left_hand_attach_point.add_effect(basic_spell_effect.spell_cast_effect_left_hand)
-		
-		if basic_spell_effect.spell_cast_effect_right_hand != null:
-			info.caster.get_character_skeleton().right_hand_attach_point.add_effect(basic_spell_effect.spell_cast_effect_right_hand)
+#	if basic_spell_effect != null:
+#		if basic_spell_effect.spell_cast_effect_left_hand != null:
+#			info.caster.get_character_skeleton().left_hand_attach_point.add_effect(basic_spell_effect.spell_cast_effect_left_hand)
+#
+#		if basic_spell_effect.spell_cast_effect_right_hand != null:
+#			info.caster.get_character_skeleton().right_hand_attach_point.add_effect(basic_spell_effect.spell_cast_effect_right_hand)
 		
 func remove_spell_cast_effect(info : SpellCastInfo) -> void:
 	var basic_spell_effect : SpellEffectVisualBasic = visual_spell_effects as SpellEffectVisualBasic
 		
-	if basic_spell_effect != null:
-		if basic_spell_effect.spell_cast_effect_left_hand != null:
-			info.caster.get_character_skeleton().left_hand_attach_point.remove_effect(basic_spell_effect.spell_cast_effect_left_hand)
-		
-		if basic_spell_effect.spell_cast_effect_right_hand != null:
-			info.caster.get_character_skeleton().right_hand_attach_point.remove_effect(basic_spell_effect.spell_cast_effect_right_hand)
+#	if basic_spell_effect != null:
+#		if basic_spell_effect.spell_cast_effect_left_hand != null:
+#			info.caster.get_character_skeleton().left_hand_attach_point.remove_effect(basic_spell_effect.spell_cast_effect_left_hand)
+#
+#		if basic_spell_effect.spell_cast_effect_right_hand != null:
+#			info.caster.get_character_skeleton().right_hand_attach_point.remove_effect(basic_spell_effect.spell_cast_effect_right_hand)
 		
 func _con_spell_cast_started(info):
 	add_spell_cast_effect(info)

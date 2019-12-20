@@ -9,9 +9,8 @@ export(NodePath) var animation_player_path : NodePath = "AnimationPlayer"
 export(Color) var damage_color : Color = Color.yellow
 export(Color) var heal_color : Color = Color.green
 
-var world_position : Vector3 = Vector3()
+var world_position : Vector2 = Vector2()
 var animation_player : AnimationPlayer = null
-var camera : Camera = null
 
 func _ready() -> void:
 	animation_player = get_node(animation_player_path) as AnimationPlayer
@@ -21,41 +20,20 @@ func _ready() -> void:
 	set_process(false)
 
 func _process(delta):
-	if camera == null:
-		return
-		
-	var cam_pos : Vector3 = camera.global_transform.xform(Vector3())
-	var dstv : Vector3 = cam_pos - world_position
-	dstv.y = 0
-#	var dst : float = dstv.length_squared()
-		
-	var cam_facing : Vector3 = -camera.global_transform.basis.z
-	var d : float = cam_facing.dot(dstv)
-		
-	if d > 0:
-		if visible:
-			hide()
-		return
-	else:
-		if not visible:
-			show()
-		
-	var screen_position : Vector2 = camera.unproject_position(world_position)
-	var new_pos : Vector2 = Vector2(screen_position.x + rect_position.x, screen_position.y + rect_position.y - 60)
+
+	var new_pos : Vector2 = Vector2(world_position.x + rect_position.x / 2.0 - 8, world_position.y + rect_position.y)
 	
 	set_position(new_pos)
 	
 
-func damage(pos : Vector3, value : int, crit : bool) -> void:
+func damage(pos : Vector2, value : int, crit : bool) -> void:
 	setup(pos, damage_color, value, crit)
 	
-func heal(pos : Vector3, value : int, crit : bool) -> void:
+func heal(pos : Vector2, value : int, crit : bool) -> void:
 	setup(pos, heal_color, value, crit)
 
-func setup(pos : Vector3, color : Color, value : int, crit : bool) -> void:
+func setup(pos : Vector2, color : Color, value : int, crit : bool) -> void:
 	world_position = pos
-	
-	camera = get_tree().get_root().get_camera() as Camera
 	
 	text = str(value)
 	add_color_override("font_color", color)

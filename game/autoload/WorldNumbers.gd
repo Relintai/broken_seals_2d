@@ -12,7 +12,8 @@ func damage(entity_position : Vector2, entity_height : float, value : int, crit 
 	add_child(scene)
 	scene.owner = self
 	
-	entity_position.y += entity_height + (0.2 * randf())
+	randomize()
+	entity_position.y -= entity_height + (0.2 * randf())
 	entity_position.x += entity_height * 0.4 - entity_height * 0.8 * randf()
 	
 	scene.damage(entity_position, value, crit)
@@ -25,8 +26,8 @@ func heal(entity_position : Vector2, entity_height : float, value : int, crit : 
 	
 	randomize()
 	
-	entity_position.y += entity_height + (0.3 * randf())
-	entity_position.x += entity_height * 0.4 - entity_height * 0.8 * randf()
+	#entity_position.y += entity_height + (0.3 * randf())
+	#entity_position.x += entity_height * 0.4 - entity_height * 0.8 * randf()
 	
 	
 	scene.heal(entity_position, value, crit)

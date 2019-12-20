@@ -64,34 +64,19 @@ func _process(delta):
 		
 		set_scale(d)
 		
-		if (get_scale() - target_scale).length() < 0.01:
+		if (get_scale() - target_scale).length() < 0.04:
 			interpolating = false
 
 	
 	var position : Vector2 = entity.position
-
-#	if dst > max_distance_squared:
-#		if visible:
-#			hide()
-#		return
-#
-#
-#	if d > 0:
-#		if visible:
-#			hide()
-#		return
-#	else:
-#		if not visible:
-#			show()
-#
-		
-	position.y += 1.9
-#	var screen_position : Vector2 = camera.unproject_position(position)
 	
-#	var new_pos : Vector2 = Vector2(screen_position.x - (rect_size.x / 2.0) * rect_scale.x, screen_position.y - (rect_size.y) * rect_scale.y)
+	position = get_global_transform().xform_inv(position)
+	
+	position.x -= (rect_size.x / 2.0 + 24) * rect_scale.x
+	position.y -= 130 * rect_scale.y
 	
 	set_position(position)
-
+	
 	
 func set_max_distance(var value : float) -> void:
 	max_distance_squared = value * value
@@ -99,9 +84,14 @@ func set_max_distance(var value : float) -> void:
 	max_distance = value
 
 func c_health_changed(stat : Stat) -> void:
+	if health.cmax == 0:
+		health_bar.max_value = 1
+		health_bar.value = 0
+		
+		return
+	
 	health_bar.max_value = stat.cmax
 	health_bar.value = stat.ccurrent
-	
 	
 #	if stat.cmax != 0:
 #		health_bar_label.text = str(int(stat.ccurrent / stat.cmax * 100))
