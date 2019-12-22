@@ -67,13 +67,13 @@ var casting_anim : bool = false
 
 var last_mouse_over : Entity = null
 
-var world : Navigation2D = null
+var world : Node2D = null
 
 
 func _ready() -> void:
 	camera = $Camera as Camera2D
 	
-	world = get_node(world_path) as Navigation2D
+	world = get_node(world_path) as Node2D
 
 func _physics_process(delta : float) -> void:
 	if world.initial_generation:

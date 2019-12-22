@@ -34,16 +34,19 @@ var _player_file_name : String
 var _player : Entity
 
 func _ready():
-	get_layer(2)
+#	print(get_layer(2))
 	pass # Replace with function body.
 
 func get_layer(index : int) -> Navigation2D:
+	for ch in get_children():
+		if ch.has_method('collision_layer') and ch.collision_layer() == index:
+			return ch
+
+	var wl : Navigation2D = world_layer.instance() as Navigation2D
+	add_child(wl)
+	wl.collision_layer = index
 	
-	
-	var ch : Navigation2D = get_child(index)
-	
-	
-	return ch
+	return wl
 
 func load_character(file_name: String) -> void:
 	_player_file_name = file_name

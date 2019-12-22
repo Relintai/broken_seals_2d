@@ -20,3 +20,12 @@ extends Navigation2D
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
+var collision_layer : int
+
+func add_entity(entity : Entity) -> void:
+	entity.owner = self
+	entity.collision_layer = collision_layer
+	
+
+func get_collision_layer() -> int:
+	return collision_layer
