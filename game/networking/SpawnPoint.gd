@@ -83,7 +83,7 @@ func spawn():
 		spawned = true
 		
 		if get_tree().network_peer == null:
-			player = Entities.spawn_player(1, Vector3(10, 20, 10), "Player", "1", 1)
+#			player = Entities.spawn_player(1, Vector3(10, 20, 10), "Player", "1", 1)
 			call_deferred("set_terrarin_player")
 #
 #		Entities.spawn_mob(1, 50, Vector3(20, 6, 20))
