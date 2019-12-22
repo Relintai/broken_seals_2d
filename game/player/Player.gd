@@ -215,7 +215,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 func target(position : Vector2):
 	var space_state = get_world_2d().direct_space_state
-	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], 2)
+	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], get_collision_layer())
 	#var results = space_state.intersect_point(position, 32, [], 2)
 
 	if results:
@@ -231,7 +231,7 @@ func target(position : Vector2):
 		
 func cmouseover(event):
 	var space_state = get_world_2d().direct_space_state
-	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], 2)
+	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], get_collision_layer())
 	#var results = space_state.intersect_point(position, 32, [], 2)
 
 	if results:

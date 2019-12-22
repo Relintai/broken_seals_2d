@@ -1,4 +1,10 @@
-extends Navigation2D
+extends Node2D
+
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this
+# file, You can obtain one at https://mozilla.org/MPL/2.0/.
+
+export(PackedScene) var world_layer : PackedScene
 
 export(bool) var editor_generate : bool = false setget set_editor_generate, get_editor_generate
 export(bool) var show_loading_screen : bool = true
@@ -12,7 +18,16 @@ var _player_file_name : String
 var _player : Entity
 
 func _ready():
+	get_layer(2)
 	pass # Replace with function body.
+
+func get_layer(index : int) -> Navigation2D:
+	
+	
+	var ch : Navigation2D = get_child(index)
+	
+	
+	return ch
 
 func load_character(file_name: String) -> void:
 	_player_file_name = file_name
