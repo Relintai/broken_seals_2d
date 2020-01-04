@@ -11,6 +11,7 @@ script = ExtResource( 1 )
 world_layer = ExtResource( 2 )
 
 [node name="Terrarin" type="TileMap" parent="."]
+z_index = -10
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 format = 1

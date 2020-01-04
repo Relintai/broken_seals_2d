@@ -51,7 +51,7 @@ func _ready():
 	health_bar = get_node(health_bar_path) as TextureProgress
 	health_bar_label = get_node(health_bar_label_path) as Label
 	
-	entity = get_node("../..") as Entity
+	entity = get_node("..") as Entity
 	health = entity.get_health()
 	
 	health.connect("c_changed", self, "c_health_changed")
@@ -77,19 +77,17 @@ func _ready():
 func _process(delta):
 	if interpolating:
 		var d : Vector2 = ((target_scale - get_scale()).normalized() * delta) + get_scale()
-		
+
 		set_scale(d)
-		
+
 		if (get_scale() - target_scale).length() < 0.04:
 			interpolating = false
 
 	
 	var position : Vector2 = entity.get_body().position
 	
-	position = get_global_transform().xform_inv(position)
-	
-	position.x -= (rect_size.x / 2.0 + 24) * rect_scale.x
-	position.y -= 130 * rect_scale.y
+	position.x -= (rect_size.x / 2.0) * rect_scale.x
+	position.y -= 60
 	
 	set_position(position)
 	
