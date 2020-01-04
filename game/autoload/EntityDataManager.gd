@@ -66,7 +66,7 @@ remote func creceive_spawn_for(data: String, global_name : String, position: Vec
 	entity.name = str(global_name)
 	entity.from_dict(parse_json(data))
 
-	entity.translation = position
+	entity.get_body().translation = position
 			
 	Logger.info("Player spawned ")
 	
@@ -92,7 +92,7 @@ func spawn_networked_player_from_data(data : String, position : Vector2, network
 	entity.from_dict(parse_json(data))
 	
 	entity.set_network_master(network_owner)
-	entity.translation = position
+	entity.get_body().translation = position
 			
 	Logger.info("Player spawned ")
 	
@@ -112,7 +112,7 @@ puppet func spawn_owned_player(data : String, position : Vector2) -> void:
 	
 	entity.from_dict(parse_json(data))
 	entity.name = str(multiplayer.get_network_unique_id())
-	entity.translation = position
+	entity.get_body().translation = position
 	entity.set_network_master(multiplayer.get_network_unique_id())
 			
 	Logger.info("Player spawned ")
@@ -142,7 +142,7 @@ func load_player(file_name : String, position : Vector2, network_owner : int) ->
 
 	entity.from_dict(load_file(file_name))
 
-	entity.position = position
+	entity.get_body().position = position
 #	entity.initialize(createinfo)
 	entity.set_network_master(network_owner)
 			
@@ -302,7 +302,7 @@ func spawn(createinfo : EntityCreateInfo, networked : bool, position : Vector2, 
 	spawn_parent.add_child(entity_node)
 	entity_node.owner = spawn_parent
 
-	entity_node.position = position
+	entity_node.get_body().position = position
 		
 	entity_node.initialize(createinfo)
 	

@@ -25,13 +25,13 @@ func _sstart_casting(info : SpellCastInfo) -> void:
 	if info.caster.sis_casting():
 		return
 	
-	if info.spell.cooldown_global_cooldown and info.caster.gets_has_global_cooldown() or info.caster.hass_category_cooldown(spell_type) or info.caster.hass_cooldown(id):
+	if cooldown_global_cooldown_enabled and info.caster.gets_has_global_cooldown() or info.caster.hass_category_cooldown(spell_type) or info.caster.hass_cooldown(id):
 		return
 	
 	if !info.caster.hass_spell(self):
 		return
 	
-	if cast:
+	if cast_enabled:
 		info.caster.sstart_casting(info)
 		return
 
@@ -102,7 +102,7 @@ func handle_effect(info : SpellCastInfo) -> void:
 	elif target_type == SPELL_TARGET_TYPE_SELF:
 		info.target = info.caster
 		
-	if damage and info.target:
+	if damage_enabled and info.target:
 		var sdi : SpellDamageInfo = SpellDamageInfo.new()
 		
 		sdi.damage_source = self
@@ -149,7 +149,7 @@ func handle_cooldown(info : SpellCastInfo) -> void:
 		info.caster.adds_cooldown(id, cooldown_cooldown)
 		
 func handle_gcd(info : SpellCastInfo) -> void:
-	if cooldown_global_cooldown and cast_cast_time < 0.01:
+	if cooldown_global_cooldown_enabled and cast_cast_time < 0.01:
 		info.caster.sstart_global_cooldown(info.caster.get_gcd().scurrent)
 
 func add_spell_cast_effect(info : SpellCastInfo) -> void:

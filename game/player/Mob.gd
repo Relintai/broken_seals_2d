@@ -78,17 +78,17 @@ func _process(delta : float) -> void:
 	frame = 0
 	
 #	print(get_tree().root.get_visible_rect())
-	var vpos : Vector2 = -get_tree().root.canvas_transform.get_origin() - position
+	var vpos : Vector2 = -get_tree().root.canvas_transform.get_origin() - get_body().position
 	var l : float = vpos.length_squared()
 	var rs : float = get_tree().root.size.x * get_tree().root.size.x
 
 	if l < rs:
-		if not visible:
-			show()
+		if not get_body().visible:
+			get_body().show()
 			set_physics_process(true)
 	else:
-		if visible:
-			hide()
+		if get_body().visible:
+			get_body().hide()
 			set_physics_process(false)
 	
 
@@ -105,16 +105,16 @@ func _physics_process(delta : float) -> void:
 	process_movement(delta)
 
 func move_along_path(distance : float)  -> void:
-	var start_point : = position
+	var start_point : Vector2 = get_body().position
 	
 	for i in range(path.size()):
 		var distance_to_next : = start_point.distance_to(path[0])
 		
 		if distance <= distance_to_next and distance >= 0.0:
-			position = start_point.linear_interpolate(path[0], distance / distance_to_next)
+			get_body().position = start_point.linear_interpolate(path[0], distance / distance_to_next)
 			break
 		elif distance <= 0.0:
-			position = path[0]
+			get_body().position = path[0]
 			follow_path = false
 			break
 			
@@ -181,9 +181,9 @@ func process_movement(delta : float) -> void:
 		return
 	
 	vel = hvel
-	vel = move_and_slide(vel)
+	vel = get_body().move_and_slide(vel)
 	
-	sset_position(position, rotation)
+	sset_position(get_body().position, get_body().rotation)
 
 
 func sstart_attack(entity : Entity) -> void:
@@ -244,10 +244,10 @@ func _son_damage_dealt(data):
 
 func _con_damage_dealt(info : SpellDamageInfo) -> void:
 #	if info.dealer == 
-	WorldNumbers.damage(position, 90, info.damage, info.crit)
+	WorldNumbers.damage(get_body().position, 90, info.damage, info.crit)
 
 func _con_heal_dealt(info : SpellHealInfo) -> void:
-	WorldNumbers.heal(position, 90, info.heal, info.crit)
+	WorldNumbers.heal(get_body().position, 90, info.heal, info.crit)
 
 func _moved() -> void:
 	if sis_casting():
@@ -328,6 +328,6 @@ func sset_position(pposition : Vector2, protation : float) -> void:
 		vrpc("cset_position", pposition, protation)
 		
 remote func cset_position(pposition : Vector2, protation : float) -> void:
-	position = pposition
-	rotation = protation
+	get_body().position = pposition
+	get_body().rotation = protation
 

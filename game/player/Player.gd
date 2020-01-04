@@ -140,13 +140,13 @@ func process_movement(delta : float) -> void:
 
 	hvel = hvel.linear_interpolate(target, accel*delta)
 	vel = hvel
-	vel = move_and_slide(vel)
+	vel = get_body().move_and_slide(vel)
 
 	if multiplayer.has_network_peer():
 		if not multiplayer.is_network_server():
-			rpc_id(1, "sset_position", position)
+			rpc_id(1, "sset_position", get_body().position)
 		else:
-			sset_position(position)
+			sset_position(get_body().position)
 
 func _input(event: InputEvent) -> void:
 	if not cursor_grabbed:
@@ -189,7 +189,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			mouse_left_down = event.pressed
 			
 			if mouse_left_down:
-				mouse_dir = (event.position - get_viewport_rect().size / 2).normalized()
+				mouse_dir = (event.position - get_body().get_viewport_rect().size / 2).normalized()
 			else:
 				mouse_dir = Vector2()
 				
@@ -210,18 +210,18 @@ func _unhandled_input(event: InputEvent) -> void:
 		target(event.position)
 		
 	if event is InputEventMouseMotion and mouse_left_down and event.device != -1:
-		mouse_dir = (event.position - get_viewport_rect().size / 2).normalized()
+		mouse_dir = (event.position - get_body().get_viewport_rect().size / 2).normalized()
 
 	
 func target(position : Vector2):
-	var space_state = get_world_2d().direct_space_state
-	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], get_collision_layer())
+	var space_state = get_body().get_world_2d().direct_space_state
+	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], get_body().get_collision_layer())
 	#var results = space_state.intersect_point(position, 32, [], 2)
 
 	if results:
 		for result in results:
-			if result.collider and result.collider is Entity:
-				crequest_target_change((result.collider as Node).get_path())
+			if result.collider and result.collider.owner is Entity:
+				crequest_target_change((result.collider.owner as Node).get_path())
 				return
 				
 		crequest_target_change(NodePath())
@@ -230,14 +230,14 @@ func target(position : Vector2):
 		
 		
 func cmouseover(event):
-	var space_state = get_world_2d().direct_space_state
-	var results = space_state.intersect_point(world.make_canvas_position_local(position), 32, [], get_collision_layer())
+	var space_state = get_body().get_world_2d().direct_space_state
+	var results = space_state.intersect_point(world.make_canvas_position_local(get_body().position), 32, [], get_body().get_collision_layer())
 	#var results = space_state.intersect_point(position, 32, [], 2)
 
 	if results:
 		for result in results:
-			if result.collider and result.collider is Entity:
-				var mo : Entity = result.collider as Entity
+			if result.collider and result.collider.owner is Entity:
+				var mo : Entity = result.collider.owner as Entity
 			
 				if last_mouse_over != null and last_mouse_over != mo:
 					if is_instance_valid(last_mouse_over):
@@ -276,7 +276,7 @@ remote func cset_position(pposition : Vector2) -> void:
 	if get_network_master() != 1:
 		print(str(get_network_master()) + " pcset")
 		
-	position = pposition
+	get_body().position = pposition
 		
 func _moved() -> void:
 	if sis_casting():

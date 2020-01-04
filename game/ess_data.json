@@ -148,7 +148,7 @@
    {
       "folder":"res://data/models/",
       "name":"Character Models",
-      "type":"CharacterSkeleton"
+      "type":"CharacterSkeleton2D"
    },
    {
       "folder":"res://data/fonts/",

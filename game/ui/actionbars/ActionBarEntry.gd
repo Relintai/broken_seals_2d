@@ -161,7 +161,7 @@ func setup_icon() -> void:
 			ThemeAtlas.unref_texture(icon_rect.texture)
 			icon_rect.texture = null
 			
-		var spell = Entities.get_spell(button_entry.item_id)
+		var spell : Spell = Entities.get_spell(button_entry.item_id) as Spell
 		
 		if spell.icon != null:
 			icon_rect.texture = ThemeAtlas.add_texture(spell.icon)
@@ -169,7 +169,7 @@ func setup_icon() -> void:
 		
 		spell_id = spell.id
 		spell_type = spell.spell_type
-		has_gcd = spell.cooldown_global_cooldown
+		has_gcd = spell.cooldown_global_cooldown_enabled
 	
 func _on_button_pressed() -> void:
 	if (button_entry.type == ActionBarButtonEntry.ACTION_BAR_BUTTON_ENTRY_TYPE_SPELL):

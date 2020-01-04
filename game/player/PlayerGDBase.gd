@@ -49,10 +49,10 @@ func _physics_process(delta):
 			update_visibility()
 		
 func update_visibility() -> void:
-	_query.collision_layer = get_collision_layer()
+	_query.collision_layer = get_body().get_collision_layer()
 	
-	_query.transform = Transform2D(0, position)
-	var res : Array = get_world_2d().direct_space_state.intersect_shape(_query)
+	_query.transform = Transform2D(0, get_body().position)
+	var res : Array = get_body().get_world_2d().direct_space_state.intersect_shape(_query)
 	
 	#warning-ignore:unassigned_variable
 	var currenty_sees : Array = Array()
@@ -104,6 +104,6 @@ func update_visibility() -> void:
 remote func set_position_remote(pos : Vector2) -> void:
 	if get_tree().is_network_server():
 		rpc("set_position_remote", pos)
-	print(position)
-	position = pos
+	#print(position)
+	get_body().position = pos
 

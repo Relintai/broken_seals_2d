@@ -91,7 +91,7 @@ func spawn():
 #		Entities.spawn_mob(1, 50, Vector3(76, 6, 54))
 
 func set_terrarin_player():
-	terrarin.set_player(player as Node2D)
+	terrarin.set_player(player.get_body() as Node2D)
 
 func _on_host_button_clicked():
 	get_tree().connect("network_peer_connected", self, "_network_peer_connected")

@@ -1,5 +1,5 @@
-extends CharacterSkeleton
-class_name CharacterSkeleton2D
+extends CharacterSkeleton2D
+class_name CharacterSkeleton2DGD
 
 # Copyright Péter Magyar relintai@gmail.com
 # MIT License, functionality from this class needs to be protable to the entity spell system

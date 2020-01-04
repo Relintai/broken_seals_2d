@@ -110,8 +110,8 @@ remote func cset_position(pposition : Vector2, protation : float) -> void:
 #	if get_network_master() != 1:
 #		print(str(get_network_master()) + "npcset")
 		
-	position = pposition
-	rotation = protation
+	get_body().position = pposition
+	get_body().rotation = protation
 		
 func _moved() -> void:
 	if sis_casting():

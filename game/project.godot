@@ -29,10 +29,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://player/CharacterSkeletonAttachPoint.gd"
 }, {
-"base": "CharacterSkeleton",
-"class": "CharacterSkeleton2D",
+"base": "CharacterSkeleton2D",
+"class": "CharacterSkeleton2DGD",
 "language": "GDScript",
-"path": "res://player/CharacterSkeleton2D.gd"
+"path": "res://player/CharacterSkeleton2DGD.gd"
 }, {
 "base": "Entity",
 "class": "DisplayPlayerGD",
@@ -129,7 +129,7 @@ _global_script_class_icons={
 "CharacterAtlas2D": "",
 "CharacterAtlasEntry2D": "",
 "CharacterSkeketonAttachPoint": "",
-"CharacterSkeleton2D": "",
+"CharacterSkeleton2DGD": "",
 "DisplayPlayerGD": "",
 "EntityAIGD": "",
 "EntityDataGD": "",
