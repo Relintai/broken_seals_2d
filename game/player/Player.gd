@@ -71,7 +71,7 @@ var world : Node2D = null
 
 
 func _ready() -> void:
-	camera = $Camera as Camera2D
+	camera = $Body/Camera as Camera2D
 	
 	world = get_node(world_path) as Node2D
 
