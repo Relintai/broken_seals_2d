@@ -333,7 +333,7 @@ func _moved() -> void:
 	if sis_casting():
 		sfail_cast()
 		
-func _con_target_changed(entity: Entity, old_target: Entity) -> void:
+func _con_target_changed(entity: Node, old_target: Node) -> void:
 	if is_instance_valid(old_target):
 		old_target.onc_untargeted()
 		

@@ -7,6 +7,7 @@
 [ext_resource path="res://scripts/item_visuals/CharacterAtlasEntry2D.gd" type="Script" id=5]
 [ext_resource path="res://characters/char_t1_outline_split.png" type="Texture" id=6]
 
+
 [sub_resource type="CharacterAtlasEntry" id=1]
 script = ExtResource( 5 )
 front_rect = Rect2( 101, 15, 9, 12 )
