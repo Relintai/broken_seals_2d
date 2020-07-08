@@ -7,7 +7,6 @@
 [ext_resource path="res://scripts/item_visuals/CharacterAtlasEntry2D.gd" type="Script" id=5]
 [ext_resource path="res://characters/char_t1_outline_split.png" type="Texture" id=6]
 
-
 [sub_resource type="CharacterAtlasEntry" id=1]
 script = ExtResource( 5 )
 front_rect = Rect2( 101, 15, 9, 12 )
@@ -47,6 +46,19 @@ texture = ExtResource( 6 )
 slots = [ null, SubResource( 1 ), null, null, null, null, null, null, null, null, null, null, null, null, SubResource( 2 ), null ]
 
 [node name="Character" type="CharacterSkeleton2D"]
+entity_type = 1
+attach_point_paths/0_left_hand = NodePath("")
+attach_point_paths/1_right_hand = NodePath("")
+attach_point_paths/2_torso = NodePath("")
+attach_point_paths/3_root = NodePath("")
+attach_point_paths/4_right_hip = NodePath("")
+attach_point_paths/5_left_hip = NodePath("")
+attach_point_paths/6_spine_2 = NodePath("")
+attach_point_paths/7_weapon_left = NodePath("")
+attach_point_paths/8_weapon_right = NodePath("")
+attach_point_paths/9_weapon_left_back = NodePath("")
+attach_point_paths/10_weapon_right_back = NodePath("")
+attach_point_paths/11_weapon_shield_left = NodePath("")
 script = ExtResource( 1 )
 front_node_path = NodePath("CharacterFrontModel")
 front_animation_player_path = NodePath("../Character/CharacterFrontModel/AnimationPlayer")

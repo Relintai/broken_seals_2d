@@ -121,11 +121,11 @@ func attack(delta):
 	
 	owner.get_body().target_movement_direction = Vector2()
 	
-	var dir : Vector3 = target.get_body().translation - owner.get_body().translation
+	var dir : Vector2 = target.get_body().position - owner.get_body().position
 	var l = dir.length()
 	
 	if l > 2.5:
-		owner.get_body().target_movement_direction = Vector2(dir.x, dir.z)
+		owner.get_body().target_movement_direction = Vector2(dir.x, dir.y)
 
 func sort_spells_by_rank(a, b):
 	if a == null or b == null:
