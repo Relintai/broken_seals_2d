@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://ui/theme/ui_theme.tres" type="Theme" id=1]
 [ext_resource path="res://ui/menu/CharacterEntry.tscn" type="PackedScene" id=2]
@@ -15,50 +15,7 @@
 [ext_resource path="res://scenes/DisconnectButton.gd" type="Script" id=13]
 [ext_resource path="res://scenes/ConnectServerButton.gd" type="Script" id=14]
 [ext_resource path="res://scenes/HostGameButton.gd" type="Script" id=15]
-[ext_resource path="res://scripts/settings/DirectionalLightSettings.gd" type="Script" id=19]
 [ext_resource path="res://ui/about/About.tscn" type="PackedScene" id=20]
-
-[sub_resource type="ProceduralSky" id=2]
-sky_top_color = Color( 0.447059, 0.780392, 0.854902, 1 )
-sky_horizon_color = Color( 0.273637, 0.277344, 0.206924, 1 )
-sky_curve = 0.263535
-sky_energy = 0.3
-ground_bottom_color = Color( 0.196078, 0.152941, 0.152941, 1 )
-ground_horizon_color = Color( 0.223529, 0.192157, 0.164706, 1 )
-ground_curve = 0.101965
-ground_energy = 0.4
-sun_color = Color( 0.45098, 0.352941, 0.113725, 1 )
-sun_latitude = 39.71
-sun_longitude = -8.09
-sun_angle_min = 0.0
-sun_angle_max = 23.15
-sun_energy = 9.29
-texture_size = 0
-
-[sub_resource type="Environment" id=3]
-background_mode = 2
-background_sky = SubResource( 2 )
-ambient_light_color = Color( 0.870588, 0.870588, 0.870588, 1 )
-ambient_light_energy = 1.24
-ambient_light_sky_contribution = 0.09
-fog_enabled = true
-fog_color = Color( 0.184314, 0.207843, 0.156863, 1 )
-fog_sun_color = Color( 0.239216, 0.337255, 0.396078, 1 )
-fog_sun_amount = 0.53
-fog_depth_begin = 155.9
-fog_depth_end = 379.9
-fog_depth_curve = 1.18921
-tonemap_mode = 2
-tonemap_exposure = 0.83
-auto_exposure_max_luma = 7.33
-ss_reflections_enabled = true
-ssao_enabled = true
-glow_levels/3 = false
-glow_intensity = 1.6
-glow_strength = 1.1
-glow_bloom = 0.1
-glow_hdr_luminance_cap = 1.0
-adjustment_enabled = true
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -100,13 +57,13 @@ __meta__ = {
 "_editor_description_": ""
 }
 menu_path = NodePath("..")
-container_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Container")
+container_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/ScrollContainer/Container")
 player_display_container_path = NodePath("../Char/CharacterDisplay")
 character_button_group = ExtResource( 4 )
 character_entry = ExtResource( 2 )
 character_folder = "characters"
-load_button_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Continue")
-renounce_button_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Renounce")
+load_button_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Load")
+renounce_button_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Delete")
 create_button_path = NodePath("CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/New")
 
 [node name="CharacterSelector" type="MarginContainer" parent="CharacterSelectorMenu"]
@@ -131,9 +88,9 @@ margin_bottom = 580.0
 alignment = 2
 
 [node name="CharacterSelector" type="PanelContainer" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer"]
-margin_top = 450.0
 margin_right = 269.0
 margin_bottom = 560.0
+size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -142,33 +99,35 @@ __meta__ = {
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 265.0
-margin_bottom = 106.0
+margin_bottom = 556.0
 
-[node name="Container" type="VBoxContainer" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
 margin_right = 261.0
-size_flags_horizontal = 3
-
-[node name="Continue" type="Button" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
-margin_top = 8.0
-margin_right = 261.0
-margin_bottom = 34.5702
-text = "Continue"
-
-[node name="Renounce" type="Button" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
-margin_top = 42.0
-margin_right = 261.0
-margin_bottom = 68.5702
+margin_bottom = 450.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "Renounce"
+
+[node name="Container" type="VBoxContainer" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/ScrollContainer"]
+margin_right = 261.0
+size_flags_horizontal = 3
+
+[node name="Load" type="Button" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
+margin_top = 458.0
+margin_right = 261.0
+margin_bottom = 484.57
+text = "Load"
 
 [node name="New" type="Button" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
-margin_top = 76.0
+margin_top = 492.0
 margin_right = 261.0
-margin_bottom = 102.57
-size_flags_horizontal = 3
-size_flags_vertical = 3
+margin_bottom = 518.57
 text = "New"
+
+[node name="Delete" type="Button" parent="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer"]
+margin_top = 526.0
+margin_right = 261.0
+margin_bottom = 552.57
+text = "Delete"
 
 [node name="PlayerDisplays" type="Node" parent="CharacterSelectorMenu"]
 
@@ -564,28 +523,9 @@ transform = Transform( 1, 1.49012e-08, 0, 0, 0.990268, -0.139173, -2.98023e-08, 
 [node name="Camera" type="Camera" parent="Char"]
 transform = Transform( 0.907555, -0.0761572, 0.41297, 0.0262364, 0.99178, 0.12524, -0.419113, -0.102827, 0.902093, 0.752064, 1.69463, 3.15021 )
 current = true
-
-[node name="World" type="Spatial" parent="." groups=[
-"save",
-]]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="World"]
-environment = SubResource( 3 )
-__meta__ = {
-"_editor_description_": ""
-}
-
-[node name="DirectionalLight" type="DirectionalLight" parent="World"]
-transform = Transform( -0.797163, 0.45442, 0.397535, 0.124932, -0.520028, 0.844963, 0.590697, 0.723238, 0.357776, 0, 18.834, 0 )
-layers = 3
-light_color = Color( 1, 0.878431, 0.878431, 1 )
-light_energy = 0.87
-light_specular = 0.65
-shadow_bias = 0.07
-script = ExtResource( 19 )
-[connection signal="pressed" from="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Continue" to="CharacterSelectorMenu" method="load_character"]
-[connection signal="pressed" from="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Renounce" to="CharacterSelectorMenu" method="renounce_character"]
+[connection signal="pressed" from="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Load" to="CharacterSelectorMenu" method="load_character"]
 [connection signal="pressed" from="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/New" to="." method="switch_to_menu" binds= [ 1 ]]
+[connection signal="pressed" from="CharacterSelectorMenu/CharacterSelector/VBoxContainer/CharacterSelector/VBoxContainer/Delete" to="CharacterSelectorMenu" method="renounce_character"]
 [connection signal="pressed" from="CharacterCreationMenu/CharacterSelector2/CharacterSelector/VBoxContainer/PanelContainer/VBoxContainer/Create" to="CharacterCreationMenu" method="create"]
 [connection signal="pressed" from="CharacterCreationMenu/CharacterSelector2/CharacterSelector/VBoxContainer/PanelContainer/VBoxContainer/Back" to="." method="switch_to_menu" binds= [ 0 ]]
 [connection signal="pressed" from="ConnectMenu/PanelContainer/VBoxContainer/Button2" to="ConnectMenu" method="hide"]

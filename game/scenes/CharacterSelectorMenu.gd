@@ -32,6 +32,7 @@ export(NodePath) var renounce_button_path : NodePath
 export(NodePath) var create_button_path : NodePath
 
 export(bool) var automatic_character_load : bool = false
+export(bool) var only_one_character : bool = false
 
 var container : Node
 var player_display_container_node : Node
@@ -40,8 +41,8 @@ func _ready():
 	container = get_node(container_path)
 	player_display_container_node = get_node(player_display_container_path)
 	
-#	if container == null:
-#		Logger.error("CharacterSelector not set up properly!")
+	if container == null:
+		Logger.error("CharacterSelector not set up properly!")
 		
 	connect("visibility_changed", self, "visibility_changed")
 		
@@ -74,14 +75,14 @@ func refresh():
 				var json_err : String = validate_json(st)
 				
 				if json_err != "":
-					print("Save corrupted! " + file_name)
-					print(json_err)
+					Logger.error("Save corrupted! " + file_name)
+					Logger.error(json_err)
 					continue
 				
 				var p = parse_json(st)
 				
 				if typeof(p) != TYPE_DICTIONARY:
-					print("Save corrupted! Not Dict! " + file_name)
+					Logger.error("Save corrupted! Not Dict! " + file_name)
 					continue
 				
 				var display : Entity = ESS.entity_spawner.spawn_display_player(file_name, player_display_container_node.get_path())
@@ -105,7 +106,7 @@ func refresh():
 				centry.pressed = true
 				centry.connect("pressed", self, "character_selection_changed")
 				
-				centry.setup(file_name, display.sentity_name, ESS.get_resource_db().get_entity_data(display.characterclass_id).text_name, display.scharacter_level, display.sclass_level, display)
+				centry.setup(file_name, display.sentity_name, ESS.get_resource_db().get_entity_data(display.characterclass_id).text_name, display.slevel, display.slevel, display)
 				
 				if first_entry == null:
 					first_entry = centry
@@ -114,24 +115,31 @@ func refresh():
 			first_entry.pressed = true
 			
 		if first_entry != null:
-			get_node(container_path).show()
+			#note that this just disables the create button, and 
+			#will still allow character creation otherwise
+			if only_one_character:
+				get_node(create_button_path).hide()
+				get_node(container_path).show()
+			
 			get_node(load_button_path).show()
-			get_node(create_button_path).hide()
 			get_node(renounce_button_path).show()
 			
 			if (automatic_character_load):
 				load_character()
 		else:
-			get_node(container_path).hide()
+			if only_one_character:
+				get_node(create_button_path).show()
+				get_node(container_path).hide()
+				
 			get_node(load_button_path).hide()
-			get_node(create_button_path).show()
 			get_node(renounce_button_path).hide()
 	else:
 		dir.make_dir("user://" + character_folder)
-		
-		get_node(container_path).hide()
+		if only_one_character:
+			get_node(container_path).hide()
+			get_node(create_button_path).show()
+			
 		get_node(load_button_path).hide()
-		get_node(create_button_path).show()
 		get_node(renounce_button_path).hide()
 
 func clear() -> void:
@@ -148,22 +156,22 @@ func renounce_character() -> void:
 	if b == null:
 		return
 		
-	var class_profile : ClassProfile = ProfileManager.getc_player_profile().get_class_profile(b.entity.sentity_data.resource_path)
-	
-	var xp_data : XPData = ESS.get_resource_db().get_xp_data()
-	
-	if xp_data.can_class_level_up(class_profile.level):
-		class_profile.xp += b.entity.sclass_xp
+	if ESS.use_class_xp:
+		var class_profile : ClassProfile = ProfileManager.getc_player_profile().get_class_profile(b.entity.sentity_data.resource_path)
 		
-		var xpr : int = xp_data.get_class_xp(class_profile.level)
-		
-		while xp_data.can_class_level_up(class_profile.level) and class_profile.xp >= xpr:
-			class_profile.level += 1
-			class_profile.xp -= xpr
+		if ESS.can_class_level_up(class_profile.level):
+			class_profile.xp += b.entity.sclass_xp
 			
-			xpr = xp_data.get_class_xp(class_profile.level)
 			
-		ProfileManager.save()
+			var xpr : int = ESS.get_class_xp(class_profile.level)
+			
+			while ESS.can_class_level_up(class_profile.level) and class_profile.xp >= xpr:
+				class_profile.level += 1
+				class_profile.xp -= xpr
+				
+				xpr = ESS.get_class_xp(class_profile.level)
+				
+			ProfileManager.save()
 
 	var file_name : String = "user://" + character_folder + "/" + b.file_name
 	
