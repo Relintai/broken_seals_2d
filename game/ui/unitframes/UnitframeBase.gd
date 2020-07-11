@@ -71,8 +71,8 @@ func set_player(p_player: Entity) -> void:
 	_player = p_player
 	
 	_player.connect("cname_changed", self, "cname_changed")
-	_player.connect("notification_ccharacter_level_up", self, "clevel_changed")
-	_player.connect("con_character_level_changed", self, "clevel_changed")
+	_player.connect("notification_clevel_up", self, "clevel_changed")
+	_player.connect("con_level_changed", self, "clevel_changed")
 	_player.connect("notification_cxp_gained", self, "notification_cxp_gained")
 	_player.connect("centity_resource_added", self, "centity_resource_added")
 	
