@@ -197,7 +197,7 @@ func process_input(delta: float) -> void:
 	
 	if input_length > 0.1:
 		#handle_graphic_facing(abs(dir.dot(Vector2(0, 1))) > 0.9)
-		character_skeleton.update_facing(dir)
+		character_skeleton.update_facing(input_dir)
 			
 	character_skeleton.get_animation_tree().set("parameters/walking/blend_amount", input_dir.length())
 
