@@ -114,32 +114,19 @@ func _process(delta : float) -> void:
 		
 	visibility_update_timer = 0
 	
-#	var camera : Camera = get_tree().get_root().get_camera() as Camera
-#
-#	if camera == null:
-#		return
-#
-#	var cam_pos : Vector3 = camera.global_transform.xform(Vector3())
-#	var dstv : Vector3 = cam_pos - translation
-#	dstv.y = 0
-#	var dst : float = dstv.length_squared()
-#
-#	if dst > max_visible_distance_squared:
-#		if visible:
-#			hide()
-#		return
-#	else:
-##		var lod_level : int = int(dst / max_visible_distance_squared * 3.0)
-#
-#		if dst < 400: #20^2
-#			character_skeleton.set_lod_level(0)
-#		elif dst > 400 and dst < 900: #20^2, 30^2
-#			character_skeleton.set_lod_level(1)
-#		else:
-#			character_skeleton.set_lod_level(2)
-#
-#		if not visible:
-#			show()
+	var vpos : Vector2 = -get_tree().root.canvas_transform.get_origin() + (get_tree().root.get_visible_rect().size / 2) - position
+	var l : float = vpos.length_squared()
+	var rs : float = get_tree().root.size.x * get_tree().root.size.x
+	rs *= 0.3
+
+	if l < rs:
+		if not visible:
+			show()
+			set_physics_process(true)
+	else:
+		if visible:
+			hide()
+			set_physics_process(false)
 
 
 func _physics_process(delta : float) -> void:
@@ -427,18 +414,18 @@ func cmouseover(event):
 			
 				if last_mouse_over != null and last_mouse_over != mo:
 					if is_instance_valid(last_mouse_over):
-						last_mouse_over.onc_mouse_exit()
+						last_mouse_over.notification_cmouse_exit()
 					
 					last_mouse_over = null
 			
 				if last_mouse_over == null:
-					mo.onc_mouse_enter()
+					mo.notification_cmouse_enter()
 					last_mouse_over = mo
 			
 				return
 			
 	if last_mouse_over != null:
-		last_mouse_over.onc_mouse_exit()
+		last_mouse_over.notification_cmouse_exit()
 		last_mouse_over = null
 	
 	

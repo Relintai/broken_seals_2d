@@ -1,4 +1,4 @@
-extends ItemVisual
+extends SkeletonModelEntry
 class_name ItemVisual2D
 
 # Copyright (c) 2019 Péter Magyar
