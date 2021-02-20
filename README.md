@@ -1,23 +1,22 @@
-# Broken Seals
+# Broken Seals 2D
 
-A 3D third person RPG. With both multiplayer, and singleplayer capabilities.
+A 2D version of [Broken Seals](https://github.com/Relintai/broken_seals).
 
-The main gameplay-loop goal is to create an experience with enough complexity and depth, that can rival the more old-school MMO- and action rpgs, because nowadays I feel like that is something that got lost.
+Same idea, similar design, but with a 2d renderer. (Of course with changes to make it work/fun in 2d.)
 
-I want the game to run on every platform, but the game design is PC first. From the testing I've done this is not going to be an issue.
-
-### In order to open the game project in Godot, you need a custom built Godot editor! [See here.](#editing-the-game)
-
-Screenshot:
-
-![Broken Seals](pictures/screen.jpg)
+Still needs a lot of work on the visual style though.
 
 ## Editing the game
 
-In order for you to open the game in the editor you will need a custom built version, with a few engine modules built in, 
-and unfortunately for now, you will need to build it yourself. (Binary releases will be available eventually!)
+In order for you to open the game in the editor you will need a custom built version, with a few engine modules built in.
 
-But don't worry, Godot is surpisingly easy and hassle free to compile! [See here.](#compiling)
+You can check the releases tab to grab one, but since the project still changes a lot on the c++ side,
+if you get it there, also get the relevant game project.
+
+At the moment I don't have nightlies, I do plan on setting up something that could create them (github actions maybe?) eventually.
+
+If you want to use master, you will need to build the project yourself for now, but don't worry, Godot is surpisingly easy and 
+hassle free to compile! [See here.](#compiling)
 
 After you have the engine with the required modules, you can go ahead, and just open the project inside the `game` folder.
 
@@ -30,14 +29,8 @@ These are the required engine modules, they are listed here for completeness`s s
 https://github.com/Relintai/world_generator.git \
 https://github.com/Relintai/entity_spell_system.git \
 https://github.com/Relintai/ui_extensions.git \
-https://github.com/Relintai/voxelman.git \
 https://github.com/Relintai/texture_packer.git \
 https://github.com/Relintai/godot_fastnoise.git \
-https://github.com/Relintai/mesh_data_resource.git \
-https://github.com/Relintai/procedural_animations.git \
-https://github.com/Relintai/props.git \
-https://github.com/Relintai/mesh_utils.git \
-https://github.com/Relintai/broken_seals_module.git \
 https://github.com/Relintai/thread_pool.git
 
 ## Compiling
@@ -46,7 +39,7 @@ First make sure, that you have everything installed to be able to compile the en
 
 Now let's clone this repository:
 
-``` git clone https://github.com/Relintai/broken_seals ```
+``` git clone https://github.com/Relintai/broken_seals_2d ```
 
 cd into the new folder:
 
