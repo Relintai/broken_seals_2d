@@ -25,7 +25,7 @@ func _setup():
 	if data.get_dungeon_start_room_data_count() == 0:
 		return
 		
-	var drd : DungeonRoomData = data.get_dungeon_start_room_data(0)
+	var drd : DungeonRoom = data.get_dungeon_start_room_data(0)
 	
 	var dung : DungeonRoom
 	if drd.target_script != null:

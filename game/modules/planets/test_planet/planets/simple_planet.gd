@@ -28,7 +28,7 @@ func _setup():
 	if data.get_biome_data_count() == 0:
 		return
 		
-	var bdata : BiomeData = data.get_biome_data(0)
+	var bdata : Biome = data.get_biome_data(0)
 		
 	var b : Biome
 	
