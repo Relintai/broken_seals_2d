@@ -22,10 +22,10 @@ extends Dungeon
 # SOFTWARE.
 
 func _setup():
-	if data.get_dungeon_start_room_data_count() == 0:
+	if get_dungeon_start_room_data_count() == 0:
 		return
 		
-	var drd : DungeonRoom = data.get_dungeon_start_room_data(0)
+	var drd : DungeonRoom = get_dungeon_start_room_data(0)
 	
 	var dung : DungeonRoom
 	if drd.target_script != null:
