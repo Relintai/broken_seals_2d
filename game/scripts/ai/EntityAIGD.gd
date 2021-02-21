@@ -35,6 +35,8 @@ func _ready():
 func _on_set_owner():
 	if not is_instance_valid(owner):
 		return
+	
+	#owner.connect("starget_changed", self, "starget_changed")
 		
 	if not owner.sentity_data:
 		return
@@ -132,3 +134,9 @@ func sort_spells_by_rank(a, b):
 		return true
 		
 	return a["rank"] > b["rank"]
+
+func starget_changed(entity: Entity, old_target: Entity):
+	if entity:
+		owner.ai_state = EntityEnums.AI_STATE_ATTACK
+	else:
+		owner.ai_state = EntityEnums.AI_STATE_OFF
