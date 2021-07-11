@@ -314,11 +314,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scenes/MainScene.gd"
 }, {
-"base": "Resource",
-"class": "MainPlanetGenerator",
-"language": "GDScript",
-"path": "res://scripts/world_generators/MainPlanetGenerator.gd"
-}, {
 "base": "EntityResource",
 "class": "ManaResource",
 "language": "GDScript",
@@ -436,7 +431,6 @@ _global_script_class_icons={
 "ItemVisualEntry2D": "",
 "LayeredTextureMaker": "",
 "Main": "",
-"MainPlanetGenerator": "",
 "ManaResource": "",
 "Menu": "",
 "MobGD": "",
