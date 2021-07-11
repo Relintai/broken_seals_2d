@@ -21,4 +21,4 @@ class_name ItemVisual2D
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-export(Array, ItemVisualEntry) var entries : Array
+export(Array, ModelVisualEntry) var entries : Array
