@@ -3,7 +3,6 @@
 [ext_resource path="res://characters/char_t1_outline_split.png" type="Texture" id=1]
 [ext_resource path="res://player/HumanoidCharacterBones2D.gd" type="Script" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "casting"
 length = 2.0
@@ -1900,7 +1899,7 @@ nodes/run/node = SubResource( 7 )
 nodes/run/position = Vector2( -280, 500 )
 nodes/walking/node = SubResource( 8 )
 nodes/walking/position = Vector2( 140, 320 )
-node_connections = [ "walking", 0, "idle", "walking", 1, "RunScale", "RunScale", 0, "run", "output", 0, "walking" ]
+node_connections = [ "output", 0, "walking", "walking", 0, "idle", "walking", 1, "RunScale", "RunScale", 0, "run" ]
 
 [node name="CharacterSideModel" type="CharacterBones"]
 rotation = 0.000121465
@@ -1926,22 +1925,15 @@ HUMANOID_BONE_HEAD_TOP = 15,
 HUMANOID_BONES_MAX = 16,"
 bones = [ NodePath("Hip"), NodePath("Hip/Torso"), NodePath("Hip/leg_r"), NodePath("Hip/leg_r/foot_r"), NodePath("Hip/leg_r/foot_r/Position2D"), NodePath("Hip/leg_l"), NodePath("Hip/leg_l/foot_l"), NodePath("Hip/leg_l/foot_l/Position2D"), NodePath("arm_r"), NodePath("hand_r"), NodePath("Hip/Torso/remote_arm_r/remote_hand_r/Position2D"), NodePath("Hip/Torso/arm_l"), NodePath("Hip/Torso/arm_l/hand_l"), NodePath("Hip/Torso/arm_l/hand_l/end"), NodePath("Hip/Torso/Head"), NodePath("Hip/Torso/Head/Position2D") ]
 
-[node name="model" type="Sprite" parent="."]
-visible = false
-texture = ExtResource( 1 )
-offset = Vector2( 0, -15.5 )
-region_enabled = true
-region_rect = Rect2( 49, 21, 13, 37 )
-
 [node name="arm_r" type="Sprite" parent="."]
-position = Vector2( -3.50003, -24.5128 )
+position = Vector2( -3.50002, -24.4539 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )
 region_enabled = true
 region_rect = Rect2( 1, 11, 4, 9 )
 
 [node name="hand_r" type="Sprite" parent="."]
-position = Vector2( -3.50003, -19.0128 )
+position = Vector2( -3.50002, -18.9539 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )
 region_enabled = true
@@ -2016,7 +2008,7 @@ __meta__ = {
 }
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 1.24679e-05, -1.89734 )
+position = Vector2( 1.96303e-05, -1.83837 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
@@ -2097,31 +2089,6 @@ position = Vector2( -0.5, 4 )
 __meta__ = {
 "_edit_bone_": true
 }
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Hip/Torso/arm_l/hand_l/end"]
-visible = false
-position = Vector2( -0.53, 0.58 )
-rotation = 0.204192
-preprocess = 0.8
-randomness = 0.07
-local_coords = false
-spread = 112.94
-gravity = Vector2( 0, 0 )
-initial_velocity = 12.0
-initial_velocity_random = 0.54
-angular_velocity = 310.59
-angular_velocity_random = 0.84
-linear_accel = 11.77
-radial_accel = 37.26
-tangential_accel = -13.72
-tangential_accel_random = 0.79
-damping = 77.44
-damping_random = 0.09
-angle_random = 0.86
-scale_amount = 2.0
-color = Color( 0.133333, 0.403922, 0.027451, 0.839216 )
-hue_variation = 0.22
-hue_variation_random = 0.88
 
 [node name="shoulder_l" type="Sprite" parent="Hip/Torso/arm_l"]
 position = Vector2( 0, -1.5 )

@@ -3,7 +3,6 @@
 [ext_resource path="res://characters/char_t1_outline_split.png" type="Texture" id=1]
 [ext_resource path="res://player/HumanoidCharacterBones2D.gd" type="Script" id=2]
 
-
 [sub_resource type="Animation" id=1]
 resource_name = "casting"
 length = 2.0
@@ -2143,7 +2142,7 @@ animation = "run"
 [sub_resource type="AnimationNodeBlend2" id=8]
 
 [sub_resource type="AnimationNodeBlendTree" id=9]
-graph_offset = Vector2( -322, -28 )
+graph_offset = Vector2( -671, 298.5 )
 nodes/RunScale/node = SubResource( 5 )
 nodes/RunScale/position = Vector2( -60, 500 )
 nodes/idle/node = SubResource( 6 )
@@ -2192,7 +2191,7 @@ region_enabled = true
 region_rect = Rect2( 27, 57, 14, 6 )
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 0, -2.19333 )
+position = Vector2( 0, -2.35694 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
@@ -2321,31 +2320,6 @@ position = Vector2( -0.5, 4 )
 __meta__ = {
 "_edit_bone_": true
 }
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Hip/Torso/arm_l/hand_l/end"]
-visible = false
-position = Vector2( -0.53, 0.58 )
-rotation = 0.204192
-preprocess = 0.8
-randomness = 0.07
-local_coords = false
-spread = 112.94
-gravity = Vector2( 0, 0 )
-initial_velocity = 12.0
-initial_velocity_random = 0.54
-angular_velocity = 310.59
-angular_velocity_random = 0.84
-linear_accel = 11.77
-radial_accel = 37.26
-tangential_accel = -13.72
-tangential_accel_random = 0.79
-damping = 77.44
-damping_random = 0.09
-angle_random = 0.86
-scale_amount = 2.0
-color = Color( 0.133333, 0.403922, 0.027451, 0.839216 )
-hue_variation = 0.22
-hue_variation_random = 0.88
 
 [node name="shoulder_l" type="Sprite" parent="Hip/Torso/arm_l"]
 position = Vector2( -0.913425, -1.12376 )
