@@ -1,49 +1,9 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scripts/item_visuals/CharacterAtlasEntry2D.gd" type="Script" id=1]
+[ext_resource path="res://characters/naturalist_characteratlas.tres" type="CharacterAtlas" id=1]
 [ext_resource path="res://player/CharacterSkeleton2DGD.gd" type="Script" id=2]
-[ext_resource path="res://scripts/item_visuals/CharacterAtlas2D.gd" type="Script" id=3]
-[ext_resource path="res://characters/char_t1_outline_split.png" type="Texture" id=4]
 [ext_resource path="res://characters/CharacterSideModel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://characters/CharacterFrontModel.tscn" type="PackedScene" id=6]
-
-[sub_resource type="CharacterAtlasEntry" id=1]
-script = ExtResource( 1 )
-front_rect = Rect2( 101, 15, 9, 12 )
-back_rect = Rect2( 74, 18, 9, 12 )
-right_rect = Rect2( 8, 13, 9, 12 )
-left_rect = Rect2( 8, 13, 9, 12 )
-
-[sub_resource type="CharacterAtlasEntry" id=2]
-script = ExtResource( 1 )
-front_rect = Rect2( 102, 2, 7, 8 )
-back_rect = Rect2( 75, 5, 7, 8 )
-right_rect = Rect2( 9, 0, 7, 8 )
-left_rect = Rect2( 9, 0, 7, 8 )
-
-[sub_resource type="CharacterAtlas" id=3]
-script = ExtResource( 3 )
-comments = "HUMANOID_BONE_HIP = 0,
-HUMANOID_BONE_TORSO = 1,
-HUMANOID_BONE_LEG_R = 2,
-HUMANOID_BONE_FOOT_R = 3,
-HUMANOID_BONE_TOE_R = 4,
-HUMANOID_BONE_LEG_L = 5,
-HUMANOID_BONE_FOOT_L = 6,
-HUMANOID_BONE_TOE_L = 7,
-HUMANOID_BONE_ARM_R = 8,
-#HUMANOID_BONE_SHOULDER_GUARD_R = 0,
-HUMANOID_BONE_HAND_R = 9,
-HUMANOID_BONE_FINGERS_R = 10,
-HUMANOID_BONE_ARM_L = 11,
-#HUMANOID_BONE_SHOULDER_GUARD_L = 0,
-HUMANOID_BONE_HAND_L = 12,
-HUMANOID_BONE_FINGERS_L = 13,
-HUMANOID_BONE_HEAD = 14,
-HUMANOID_BONE_HEAD_TOP = 15,
-HUMANOID_BONES_MAX = 16,"
-texture = ExtResource( 4 )
-slots = [ null, SubResource( 1 ), null, null, null, null, null, null, null, null, null, null, null, null, SubResource( 2 ), null ]
 
 [node name="Character" type="CharacterSkeleton2D"]
 entity_type = 1
@@ -66,27 +26,24 @@ front_animation_tree_path = NodePath("../Character/CharacterFrontModel/Animation
 side_node_path = NodePath("CharacterSideModel")
 side_animation_player_path = NodePath("../Character/CharacterSideModel/AnimationPlayer")
 side_animation_tree_path = NodePath("../Character/CharacterSideModel/AnimationTree")
-character_atlas = SubResource( 3 )
+character_atlas = ExtResource( 1 )
 
 [node name="CharacterFrontModel" parent="." instance=ExtResource( 6 )]
 visible = false
 
 [node name="Torso" parent="CharacterFrontModel/Hip" index="1"]
-position = Vector2( 0, -2.03035 )
-
-[node name="leg_r" parent="CharacterFrontModel/Hip/Torso" index="0"]
-position = Vector2( -2, 0.999999 )
+position = Vector2( 0, -2.29163 )
 
 [node name="CharacterSideModel" parent="." instance=ExtResource( 5 )]
 
 [node name="arm_r" parent="CharacterSideModel" index="0"]
-position = Vector2( -3.50004, -24.572 )
+position = Vector2( -3.49999, -24.1979 )
 
 [node name="hand_r" parent="CharacterSideModel" index="1"]
-position = Vector2( -3.50004, -19.072 )
+position = Vector2( -3.49999, -18.6979 )
 
 [node name="Torso" parent="CharacterSideModel/Hip" index="3"]
-position = Vector2( 5.27825e-06, -1.95654 )
+position = Vector2( 5.07217e-05, -1.58236 )
 
 [editable path="CharacterFrontModel"]
 [editable path="CharacterSideModel"]

@@ -1,3 +1,4 @@
+tool
 extends CharacterBones
 class_name HumanoidCharacterBones2D
 
@@ -50,7 +51,7 @@ enum HumanoidBones {
 export (String, MULTILINE) var help : String
 export (Array, NodePath) var bones : Array
 
-var _atlas : CharacterAtlas2D
+export(CharacterAtlas) var _atlas : CharacterAtlas
 
 func set_facing(facing : int) -> void:
 	if _atlas == null:

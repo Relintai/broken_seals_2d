@@ -2142,7 +2142,7 @@ animation = "run"
 [sub_resource type="AnimationNodeBlend2" id=8]
 
 [sub_resource type="AnimationNodeBlendTree" id=9]
-graph_offset = Vector2( -671, 298.5 )
+graph_offset = Vector2( -473, 293 )
 nodes/RunScale/node = SubResource( 5 )
 nodes/RunScale/position = Vector2( -60, 500 )
 nodes/idle/node = SubResource( 6 )
@@ -2152,7 +2152,7 @@ nodes/run/node = SubResource( 7 )
 nodes/run/position = Vector2( -280, 500 )
 nodes/walking/node = SubResource( 8 )
 nodes/walking/position = Vector2( 140, 320 )
-node_connections = [ "output", 0, "walking", "walking", 0, "idle", "walking", 1, "RunScale", "RunScale", 0, "run" ]
+node_connections = [ "output", 0, "walking", "RunScale", 0, "run", "walking", 0, "idle", "walking", 1, "RunScale" ]
 
 [node name="CharacterFrontModel" type="CharacterBones"]
 rotation = 0.000121465
@@ -2191,7 +2191,7 @@ region_enabled = true
 region_rect = Rect2( 27, 57, 14, 6 )
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 0, -2.35694 )
+position = Vector2( 0, -2.05287 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
