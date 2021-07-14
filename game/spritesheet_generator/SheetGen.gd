@@ -148,7 +148,7 @@ func _process(delta):
 
 	_texture.blend_rect(frame, ur, Vector2((_frame * _sprite_size) + xx, (_index * _sprite_size)))
 	
-	_current_animation_player.seek(_frame * (_current_animation_player.current_animation_length / (_sprite_num - 1)), true)
+	_current_animation_player.seek(_frame * (_current_animation_player.current_animation_length / (_sprite_num)), true)
 	
 	_frame += 1
 
