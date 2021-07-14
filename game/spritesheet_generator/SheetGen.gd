@@ -13,6 +13,7 @@ export (bool) var generate : bool = false setget set_generate, get_generate
 export (String) var output_file_name : String = "res://testsave.png"
 
 export (Array, String) var animations : Array
+export (Array, NodePath) var z_index_paths : Array
 
 export (NodePath) var instant_preview_path
 export (NodePath) var sprite_preview_path
@@ -26,6 +27,10 @@ export (NodePath) var model_side_path
 export (NodePath) var model_side_animation_player_path
 export (NodePath) var model_side_animation_tree_player_path
 
+export(int) var cast_animation_index : int = 0
+export(PackedScene) var cast_animation_scene : PackedScene = null
+export (Array, NodePath) var cast_animation_paths : Array
+var cast_animations : Array
 
 var _viewport
 var _viewport_texture 
@@ -105,8 +110,7 @@ func _process(delta):
 		
 		setup_direction()
 		
-		_current_animation_player.play(animations[_current_animation_index])
-		_current_animation_player.seek(0, true)
+		setup_animation()
 		
 		return
 		
@@ -133,9 +137,9 @@ func _process(delta):
 			_running = false
 			create_atlas()
 			return
+		
+		setup_animation()
 
-		_current_animation_player.play(animations[_current_animation_index])
-		_current_animation_player.seek(0, true)
 		return
 
 	var ur = frame.get_used_rect()
@@ -148,6 +152,31 @@ func _process(delta):
 	
 	_frame += 1
 
+func setup_animation():
+	_current_animation_player.play(animations[_current_animation_index])
+	_current_animation_player.seek(0, true)
+	
+	if !cast_animation_scene:
+		return
+	
+	if _current_animation_index == cast_animation_index:
+		for cap in cast_animation_paths:
+			var n = get_node(cap)
+			
+			if !n:
+				continue
+				
+			var pa = cast_animation_scene.instance()
+			
+			cast_animations.push_back(pa)
+			
+			n.add_child(pa)
+	else:
+		for n in cast_animations:
+			n.queue_free()
+			
+		cast_animations.clear()
+
 #enum CharacterFacing 
 #	FACING_FRONT = 0,
 #	FACING_BACK = 1,
@@ -155,32 +184,52 @@ func _process(delta):
 #	FACING_LEFT = 3,
 
 func setup_direction():
+	for a in cast_animations:
+			if a.has_method("get_z_index"):
+				a.z_index = 0
+	
 	if _direction == 0:
 		_current_animation_player = _model_side_animation_player
 		_model_side.set_facing(2)
 		_model_side.transform.x.x = -1
-		
+
 		_model_side.show()
 		_model_front.hide()
+		
+		for np in z_index_paths:
+			get_node(np).z_index = 0
 	if _direction == 1:
 		_current_animation_player = _model_side_animation_player
 		_model_side.set_facing(3)
 		_model_side.transform.x.x = 1
-		
+
 		_model_side.show()
 		_model_front.hide()
+		
+		for np in z_index_paths:
+			get_node(np).z_index = 0
 	if _direction == 2:
 		_current_animation_player = _model_front_animation_player
 		_model_front.set_facing(0)
 		
 		_model_side.hide()
 		_model_front.show()
+		
+		for np in z_index_paths:
+			get_node(np).z_index = 0
 	if _direction == 3:
 		_current_animation_player = _model_front_animation_player
 		_model_front.set_facing(1)
 		
 		_model_side.hide()
 		_model_front.show()
+		
+		for np in z_index_paths:
+			get_node(np).z_index = -1
+			
+		for a in cast_animations:
+			if a.has_method("get_z_index"):
+				a.z_index = -1
 		
 
 func create_atlas():
