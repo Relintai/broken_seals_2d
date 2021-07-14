@@ -72,7 +72,7 @@ character_atlas = SubResource( 3 )
 visible = false
 
 [node name="Torso" parent="CharacterFrontModel/Hip" index="1"]
-position = Vector2( 0, -2.18636 )
+position = Vector2( 0, -2.03035 )
 
 [node name="leg_r" parent="CharacterFrontModel/Hip/Torso" index="0"]
 position = Vector2( -2, 0.999999 )
@@ -80,13 +80,13 @@ position = Vector2( -2, 0.999999 )
 [node name="CharacterSideModel" parent="." instance=ExtResource( 5 )]
 
 [node name="arm_r" parent="CharacterSideModel" index="0"]
-position = Vector2( -3.50001, -24.3486 )
+position = Vector2( -3.50004, -24.572 )
 
 [node name="hand_r" parent="CharacterSideModel" index="1"]
-position = Vector2( -3.50001, -18.8486 )
+position = Vector2( -3.50004, -19.072 )
 
 [node name="Torso" parent="CharacterSideModel/Hip" index="3"]
-position = Vector2( 3.24121e-05, -1.73312 )
+position = Vector2( 5.27825e-06, -1.95654 )
 
 [editable path="CharacterFrontModel"]
 [editable path="CharacterSideModel"]
