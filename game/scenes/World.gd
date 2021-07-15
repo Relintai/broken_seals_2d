@@ -64,8 +64,8 @@ func load_character(file_name: String) -> void:
 
 
 func generate() -> void:
-	for x in range(-5, 5):
-		for y in range(-5, 5):
+	for x in range(-2, 2):
+		for y in range(-2, 2):
 			ESS.entity_spawner.spawn_mob(1, 50, Vector3(x * 200, y * 200, 0))
 
 func save() -> void:
