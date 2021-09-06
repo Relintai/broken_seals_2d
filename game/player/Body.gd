@@ -85,6 +85,8 @@ var character_skeleton : CharacterSkeleton2D
 
 var visibility_update_timer : float = 0
 
+var _nameplate : Node = null
+
 func _enter_tree() -> void:
 	world = get_node(world_path) as Node2D
 	camera = get_node_or_null("Camera") as Camera2D
@@ -94,10 +96,10 @@ func _enter_tree() -> void:
 	entity.set_character_skeleton(character_skeleton)
 #	entity.connect("notification_ccast", self, "on_notification_ccast")
 	entity.connect("diesd", self, "on_diesd")
-	entity.connect("isc_controlled_changed", self, "on_c_controlled_changed")
+	entity.connect("onc_entity_controller_changed", self, "on_c_controlled_changed")
 	owner = entity
 
-	on_c_controlled_changed(entity.c_is_controlled)
+	on_c_controlled_changed()
 	
 	transform = entity.get_transform_2d(true)
 
@@ -142,7 +144,7 @@ func _physics_process(delta : float) -> void:
 	if dead:
 		return
 		
-	if entity.c_is_controlled:
+	if entity.getc_is_controlled():
 		process_input(delta)
 		process_movement_player(delta)
 	else:
@@ -472,11 +474,14 @@ func analog_force_change(vector, touchpad):
 #				anim_node_state_machine.travel("run-loop")
 	
 	
-func on_c_controlled_changed(val):
+func on_c_controlled_changed():
 	#create camera and pivot if true
-	_controlled = val
+	_controlled = entity.getc_is_controlled()
 	
-	if val:
+	if _controlled:
+		if _nameplate:
+			_nameplate.queue_free()
+			
 		camera = Camera2D.new()
 		camera.zoom = Vector2(0.8, 0.8)
 		add_child(camera)
@@ -498,10 +503,19 @@ func on_c_controlled_changed(val):
 		set_process_input(false)
 		set_process_unhandled_input(false)
 		var nameplatescn : PackedScene = ResourceLoader.load("res://ui/nameplates/NamePlate.tscn")
-		var nameplate = nameplatescn.instance()
-		get_parent().add_child(nameplate)
+		_nameplate = nameplatescn.instance()
+		get_parent().add_child(_nameplate)
 		
-		
+func on_diesd(entity):
+	if dead:
+		return
+
+	dead = true
+
+	#anim_node_state_machine.travel("dead")
+	
+	#set_physics_process(false)
+	
  
 remote func sset_position(pposition : Vector2) -> void:
 	if multiplayer.network_peer and multiplayer.is_network_server():
