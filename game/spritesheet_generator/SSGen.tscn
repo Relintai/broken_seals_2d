@@ -53,6 +53,7 @@ z_index = 2
 current = true
 
 [node name="CharacterFrontModel" parent="Viewport" instance=ExtResource( 1 )]
+scale = Vector2( 1, 0.95 )
 _atlas = ExtResource( 6 )
 
 [node name="Torso" parent="Viewport/CharacterFrontModel/Hip" index="1"]
@@ -67,7 +68,7 @@ active = false
 [node name="CharacterSideModel" parent="Viewport" instance=ExtResource( 2 )]
 visible = false
 rotation = 3.14147
-scale = Vector2( 1, -1 )
+scale = Vector2( 1, -0.95 )
 _atlas = ExtResource( 6 )
 
 [node name="arm_r" parent="Viewport/CharacterSideModel" index="0"]
