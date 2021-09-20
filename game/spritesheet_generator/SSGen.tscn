@@ -21,20 +21,20 @@ _sprite_num = 16
 _show_atlas = true
 save_texture = true
 animations = [ "run", "idle", "casting", "rest" ]
-z_index_paths = [ NodePath("Viewport/CharacterFrontModel/Hip/Torso/remote_arm_r/remote_hand_r"), NodePath("Viewport/CharacterFrontModel/Hip/Torso/arm_l/hand_l") ]
+z_index_paths = [ NodePath("Viewport/Node2D/CharacterFrontModel/Hip/Torso/remote_arm_r/remote_hand_r"), NodePath("Viewport/Node2D/CharacterFrontModel/Hip/Torso/arm_l/hand_l") ]
 instant_preview_path = NodePath("InstantPreview")
 sprite_preview_path = NodePath("SpritePreview")
 viewport_path = NodePath("Viewport")
 atlas_preview_path = NodePath("AtlasPreview")
-model_front_path = NodePath("Viewport/CharacterFrontModel")
-model_front_animation_player_path = NodePath("Viewport/CharacterFrontModel/AnimationPlayer")
-model_front_animation_tree_player_path = NodePath("Viewport/CharacterFrontModel/AnimationTree")
-model_side_path = NodePath("Viewport/CharacterSideModel")
-model_side_animation_player_path = NodePath("Viewport/CharacterSideModel/AnimationPlayer")
-model_side_animation_tree_player_path = NodePath("Viewport/CharacterSideModel/AnimationTree")
+model_front_path = NodePath("Viewport/Node2D/CharacterFrontModel")
+model_front_animation_player_path = NodePath("Viewport/Node2D/CharacterFrontModel/AnimationPlayer")
+model_front_animation_tree_player_path = NodePath("Viewport/Node2D/CharacterFrontModel/AnimationTree")
+model_side_path = NodePath("Viewport/Node2D/CharacterSideModel")
+model_side_animation_player_path = NodePath("Viewport/Node2D/CharacterSideModel/AnimationPlayer")
+model_side_animation_tree_player_path = NodePath("Viewport/Node2D/CharacterSideModel/AnimationTree")
 cast_animation_index = 2
 cast_animation_scene = ExtResource( 7 )
-cast_animation_paths = [ NodePath("Viewport/CharacterFrontModel/Hip/Torso/remote_arm_r/remote_hand_r/Position2D"), NodePath("Viewport/CharacterFrontModel/Hip/Torso/arm_l/hand_l/end"), NodePath("Viewport/CharacterSideModel/Hip/Torso/remote_arm_r/remote_hand_r/Position2D"), NodePath("Viewport/CharacterSideModel/Hip/Torso/arm_l/hand_l/end") ]
+cast_animation_paths = [ NodePath("Viewport/Node2D/CharacterFrontModel/Hip/Torso/remote_arm_r/remote_hand_r/Position2D"), NodePath("Viewport/Node2D/CharacterFrontModel/Hip/Torso/arm_l/hand_l/end"), NodePath("Viewport/Node2D/CharacterSideModel/Hip/Torso/remote_arm_r/remote_hand_r/Position2D"), NodePath("Viewport/Node2D/CharacterSideModel/Hip/Torso/arm_l/hand_l/end") ]
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 64, 64 )
@@ -52,36 +52,37 @@ position = Vector2( 0, -15.726 )
 z_index = 2
 current = true
 
-[node name="CharacterFrontModel" parent="Viewport" instance=ExtResource( 1 )]
-scale = Vector2( 1, 0.95 )
+[node name="Node2D" type="Node2D" parent="Viewport"]
+
+[node name="CharacterFrontModel" parent="Viewport/Node2D" instance=ExtResource( 1 )]
 _atlas = ExtResource( 6 )
 
-[node name="Torso" parent="Viewport/CharacterFrontModel/Hip" index="1"]
+[node name="Torso" parent="Viewport/Node2D/CharacterFrontModel/Hip" index="1"]
 position = Vector2( 0, -2.289 )
 
-[node name="hand_l" parent="Viewport/CharacterFrontModel/Hip/Torso/arm_l" index="0"]
+[node name="hand_l" parent="Viewport/Node2D/CharacterFrontModel/Hip/Torso/arm_l" index="0"]
 z_index = 1
 
-[node name="AnimationTree" parent="Viewport/CharacterFrontModel" index="2"]
+[node name="AnimationTree" parent="Viewport/Node2D/CharacterFrontModel" index="2"]
 active = false
 
-[node name="CharacterSideModel" parent="Viewport" instance=ExtResource( 2 )]
+[node name="CharacterSideModel" parent="Viewport/Node2D" instance=ExtResource( 2 )]
 visible = false
 rotation = 3.14147
-scale = Vector2( 1, -0.95 )
+scale = Vector2( 1, -1 )
 _atlas = ExtResource( 6 )
 
-[node name="arm_r" parent="Viewport/CharacterSideModel" index="0"]
+[node name="arm_r" parent="Viewport/Node2D/CharacterSideModel" index="0"]
 position = Vector2( -3.50004, -24.6155 )
 
-[node name="hand_r" parent="Viewport/CharacterSideModel" index="1"]
+[node name="hand_r" parent="Viewport/Node2D/CharacterSideModel" index="1"]
 position = Vector2( -3.50004, -19.1155 )
 z_index = 1
 
-[node name="Torso" parent="Viewport/CharacterSideModel/Hip" index="3"]
+[node name="Torso" parent="Viewport/Node2D/CharacterSideModel/Hip" index="3"]
 position = Vector2( 0, -2 )
 
-[node name="AnimationTree" parent="Viewport/CharacterSideModel" index="4"]
+[node name="AnimationTree" parent="Viewport/Node2D/CharacterSideModel" index="4"]
 active = false
 
 [node name="InstantPreview" type="Sprite" parent="."]
@@ -108,5 +109,5 @@ vframes = 16
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 
-[editable path="Viewport/CharacterFrontModel"]
-[editable path="Viewport/CharacterSideModel"]
+[editable path="Viewport/Node2D/CharacterFrontModel"]
+[editable path="Viewport/Node2D/CharacterSideModel"]
