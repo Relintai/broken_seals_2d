@@ -52,6 +52,8 @@ var _atlas_preview
 var _time = 0
 var _frame = 0
 var _index = 0
+var _frame_atlas = 0
+var _index_atlas = 0
 var _direction = 0
 var _current_animation_index = 0
 var _current_animation_player = null
@@ -111,7 +113,7 @@ func _ready():
 	
 	_texture = Image.new()
 	var frame = _viewport.get_texture().get_data()
-	_texture.create(512, 512, false, frame.get_format())
+	_texture.create(64, 64, false, frame.get_format())
 	
 	_texture2 = Image.new()
 	var frame2 = _viewport2.get_texture().get_data()
@@ -133,7 +135,6 @@ func _process(delta):
 		_first = false
 		
 		setup_direction()
-		
 		setup_animation()
 		
 		return
@@ -152,14 +153,16 @@ func _process(delta):
 	var ur = frame2.get_used_rect()
 	var xx : float = 0
 	xx = (_sprite_size - ur.size.x) / 2
-	_texture2.blend_rect(frame2, ur, Vector2((_frame * _sprite_size) + xx, (_index * _sprite_size)))
-	_current_animation_player.seek(_frame * (_current_animation_player.current_animation_length / (_sprite_num)), true)
+	_texture2.blend_rect(frame2, ur, Vector2((_frame_atlas * _sprite_size) + xx, (_index_atlas * _sprite_size)))
+	_current_animation_player.seek(_frame_atlas * (_current_animation_player.current_animation_length / (_sprite_num)), true)
 	
-		
 	if (_index >= _directions * animations.size()):
 		_running = false
 		create_atlas()
 		return
+		
+	_frame_atlas = _frame
+	_index_atlas = _index
 
 	_sprite_preview.get_texture().set_data(frame2)
 	
