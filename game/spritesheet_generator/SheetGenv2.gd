@@ -4,6 +4,9 @@ export (int) var _sprite_size
 export (int) var _sprite_num
 var _directions : int = 4
 
+export(bool) var outline_image : bool = true
+export(Color) var outline_color : Color = Color(0, 0, 0, 1)
+
 export (bool) var _show_atlas = false
 
 export (bool) var save_texture = false
@@ -149,6 +152,9 @@ func _process(delta):
 		return
 		
 	var frame2 = _viewport2.get_texture().get_data()
+	
+	if outline_image:
+		generate_outline(frame2)
 		
 	var ur = frame2.get_used_rect()
 	var xx : float = 0
@@ -268,6 +274,36 @@ func setup_direction():
 			if a.has_method("get_z_index"):
 				a.z_index = -1
 		
+
+func generate_outline(img : Image):
+	img.lock()
+	
+	for x in range(1, img.get_size().x - 1):
+		for y in range(1, img.get_size().y - 1):
+			var c : Color = img.get_pixel(x, y)
+			
+			if is_zero_approx(c.a):
+				var cxn : Color = img.get_pixel(x - 1, y)
+				var cxp : Color = img.get_pixel(x + 1, y)
+				var cyn : Color = img.get_pixel(x, y - 1)
+				var cyp : Color = img.get_pixel(x, y + 1)
+				
+				if cxn.is_equal_approx(outline_color):
+					cxn.a = 0
+				
+				if cxp.is_equal_approx(outline_color):
+					cxp.a = 0
+					
+				if cyn.is_equal_approx(outline_color):
+					cyn.a = 0
+					
+				if cyp.is_equal_approx(outline_color):
+					cyp.a = 0
+				
+				if !is_zero_approx(cxn.a) || !is_zero_approx(cxp.a) || !is_zero_approx(cyn.a) || !is_zero_approx(cyp.a):
+					img.set_pixel(x, y, outline_color)
+	
+	img.unlock()
 
 func create_atlas():
 	_image_texture = ImageTexture.new()
