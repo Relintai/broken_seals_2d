@@ -483,7 +483,7 @@ func on_c_controlled_changed():
 			_nameplate.queue_free()
 			
 		camera = Camera2D.new()
-		camera.zoom = Vector2(0.8, 0.8)
+		camera.zoom = Vector2(0.5, 0.5)
 		add_child(camera)
 		camera.current = true
 
