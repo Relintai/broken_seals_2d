@@ -21,8 +21,9 @@ environment = SubResource( 3 )
 
 [node name="TextureAtlasGenerator" type="Node2D"]
 script = ExtResource( 3 )
-_sprite_size = 40
+_sprite_size = 26
 _sprite_num = 16
+outline_color = Color( 0.027451, 0.027451, 0.027451, 1 )
 _show_atlas = true
 save_texture = true
 animations = [ "run", "idle", "casting", "rest" ]
