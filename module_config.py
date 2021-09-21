@@ -1,4 +1,4 @@
-engine_repository = [ ['https://github.com/godotengine/godot.git', 'git@github.com:godotengine/godot.git'], 'engine', '' ]
+engine_repository = [ ['https://github.com/Relintai/godot.git', 'git@github.com:Relintai/godot.git'], 'engine', '' ]
 
 module_repositories = [
 
