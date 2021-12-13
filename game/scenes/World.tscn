@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scenes/World.gd" type="Script" id=1]
 [ext_resource path="res://world/WorldLayer.tscn" type="PackedScene" id=2]
-[ext_resource path="res://test_iso_tileset/TileMap64x32.tscn" type="PackedScene" id=3]
+[ext_resource path="res://modules/planets/TileMap64x32.tscn" type="PackedScene" id=3]
 
 [node name="World" type="Node2D" groups=["save"]]
 scale = Vector2( 1, 0.706 )
