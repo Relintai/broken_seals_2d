@@ -16,10 +16,11 @@ environment = SubResource( 1 )
 
 [node name="TextureAtlasGenerator" type="Node2D"]
 script = ExtResource( 3 )
-_sprite_size = 40
+_sprite_size = 38
 _sprite_num = 16
 _show_atlas = true
 save_texture = true
+modulate_color = Color( 0.705882, 0.705882, 0.705882, 1 )
 animations = [ "run", "idle", "casting", "rest" ]
 z_index_paths = [ NodePath("Viewport/Node2D/CharacterFrontModel/Hip/Torso/remote_arm_r/remote_hand_r"), NodePath("Viewport/Node2D/CharacterFrontModel/Hip/Torso/arm_l/hand_l") ]
 instant_preview_path = NodePath("InstantPreview")

@@ -2191,7 +2191,7 @@ region_enabled = true
 region_rect = Rect2( 27, 57, 14, 6 )
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 0, -2.16791 )
+position = Vector2( 0, -2.24034 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
@@ -2201,7 +2201,7 @@ __meta__ = {
 }
 
 [node name="leg_r" type="Sprite" parent="Hip/Torso"]
-position = Vector2( -2, 0.999999 )
+position = Vector2( -2, 1 )
 rotation = -0.0158546
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )
@@ -2260,7 +2260,6 @@ __meta__ = {
 
 [node name="remote_arm_r" type="Sprite" parent="Hip/Torso"]
 position = Vector2( -5.01738, -8.74725 )
-rotation = -1.47386e-06
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )
 region_enabled = true

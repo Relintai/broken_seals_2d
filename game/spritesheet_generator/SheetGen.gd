@@ -12,6 +12,12 @@ export (bool) var generate : bool = false setget set_generate, get_generate
 
 export (String) var output_file_name : String = "res://testsave.png"
 
+export(bool) var outline_image : bool = true
+export(Color) var outline_color : Color = Color(0, 0, 0, 1)
+
+export(bool) var modulate_image_color : bool = true
+export(Color) var modulate_color : Color = Color(1, 1, 1, 1)
+
 export (Array, String) var animations : Array
 export (Array, NodePath) var z_index_paths : Array
 
@@ -115,6 +121,13 @@ func _process(delta):
 		return
 		
 	var frame = _viewport.get_texture().get_data()
+	
+	if modulate_image_color:
+		apply_modulate(frame)
+	
+	if outline_image:
+		generate_outline(frame)
+		
 	
 	_sprite_preview.get_texture().set_data(frame)
 	
@@ -231,6 +244,49 @@ func setup_direction():
 			if a.has_method("get_z_index"):
 				a.z_index = -1
 		
+
+func generate_outline(img : Image):
+	img.lock()
+	
+	for x in range(1, img.get_size().x - 1):
+		for y in range(1, img.get_size().y - 1):
+			var c : Color = img.get_pixel(x, y)
+			
+			if is_zero_approx(c.a):
+				var cxn : Color = img.get_pixel(x - 1, y)
+				var cxp : Color = img.get_pixel(x + 1, y)
+				var cyn : Color = img.get_pixel(x, y - 1)
+				var cyp : Color = img.get_pixel(x, y + 1)
+				
+				if cxn.is_equal_approx(outline_color):
+					cxn.a = 0
+				
+				if cxp.is_equal_approx(outline_color):
+					cxp.a = 0
+					
+				if cyn.is_equal_approx(outline_color):
+					cyn.a = 0
+					
+				if cyp.is_equal_approx(outline_color):
+					cyp.a = 0
+				
+				if !is_zero_approx(cxn.a) || !is_zero_approx(cxp.a) || !is_zero_approx(cyn.a) || !is_zero_approx(cyp.a):
+					img.set_pixel(x, y, outline_color)
+	
+	img.unlock()
+
+func apply_modulate(img : Image):
+	img.lock()
+	
+	for x in range(1, img.get_width()):
+		for y in range(1, img.get_height()):
+			var c : Color = img.get_pixel(x, y)
+			
+			c *= modulate_color
+			
+			img.set_pixel(x, y, c)
+	
+	img.unlock()
 
 func create_atlas():
 	_image_texture = ImageTexture.new()
