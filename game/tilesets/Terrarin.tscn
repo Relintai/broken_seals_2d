@@ -1,8 +1,8 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://tilesets/tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://tilesets/tileset.tres" type="RTileSet" id=1]
 
-[node name="Terrarin" type="TileMap"]
+[node name="Terrarin" type="RTileMap"]
 z_index = -10
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 32, 32 )

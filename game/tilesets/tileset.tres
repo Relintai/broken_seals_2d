@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=5 format=2]
+[gd_resource type="RTileSet" load_steps=6 format=2]
 
 [ext_resource path="res://tilesets/tiles.png" type="Texture" id=1]
 
@@ -14,7 +14,10 @@ polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 vertices = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
 polygons = [ PoolIntArray( 0, 1, 2, 3 ) ]
 
+[sub_resource type="FastnoiseNoiseParams" id=4]
+
 [resource]
+noise = SubResource( 4 )
 0/name = "Grass"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )

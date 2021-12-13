@@ -627,6 +627,10 @@ limits/message_queue/max_size_kb=2048
 
 2d/default_gravity=0
 
+[props]
+
+default_prop_material_cache_class="PropMaterialCachePCM"
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
