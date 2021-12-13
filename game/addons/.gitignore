@@ -5,3 +5,6 @@
 !Godoxel/**
 !mat_maker_gd
 !mat_maker_gd/**
+!tile_generator
+!tile_generator/**
+

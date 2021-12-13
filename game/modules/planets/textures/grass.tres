@@ -241,6 +241,21 @@ input2 = SubResource( 23 )
 blend_type = 4
 opacity = SubResource( 24 )
 
+[sub_resource type="Resource" id=31]
+script = ExtResource( 3 )
+default_type = 5
+default_int = 0
+default_float = 0.0
+default_vector2 = Vector2( 0, 0 )
+default_vector3 = Vector3( 0, 0, 0 )
+default_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Resource" id=27]
+script = ExtResource( 8 )
+graph_position = Vector2( 900, 340 )
+image = SubResource( 31 )
+postfix = "_albedo"
+
 [sub_resource type="Resource" id=28]
 script = ExtResource( 3 )
 default_type = 5
@@ -249,22 +264,6 @@ default_float = 0.0
 default_vector2 = Vector2( 0, 0 )
 default_vector3 = Vector3( 0, 0, 0 )
 default_color = Color( 0, 0, 0, 1 )
-
-[sub_resource type="Resource" id=26]
-script = ExtResource( 3 )
-default_type = 5
-default_int = 0
-default_float = 0.0
-default_vector2 = Vector2( 0, 0 )
-default_vector3 = Vector3( 0, 0, 0 )
-default_color = Color( 0, 0, 0, 1 )
-input_property = SubResource( 28 )
-
-[sub_resource type="Resource" id=27]
-script = ExtResource( 8 )
-graph_position = Vector2( 900, 340 )
-image = SubResource( 26 )
-postfix = "_albedo"
 
 [sub_resource type="Resource" id=29]
 script = ExtResource( 3 )
@@ -285,5 +284,5 @@ width = 0.1
 
 [resource]
 script = ExtResource( 1 )
-image_size = Vector2( 256, 256 )
+image_size = Vector2( 64, 64 )
 nodes = [ SubResource( 5 ), SubResource( 7 ), SubResource( 10 ), SubResource( 13 ), SubResource( 18 ), SubResource( 20 ), SubResource( 25 ), SubResource( 27 ), SubResource( 30 ) ]

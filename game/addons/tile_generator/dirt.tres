@@ -1,0 +1,14 @@
+[gd_resource type="Resource" load_steps=3 format=2]
+
+[ext_resource path="res://modules/planets/textures/dirt_albedo.png" type="Texture" id=1]
+[ext_resource path="res://addons/tile_generator/smple_tile.gd" type="Script" id=2]
+
+[resource]
+script = ExtResource( 2 )
+input = ExtResource( 1 )
+output_image_name = "dirt"
+image_count = 1
+image_size_x = 64
+image_size_y = 32
+alpha_crop = true
+generate = false
