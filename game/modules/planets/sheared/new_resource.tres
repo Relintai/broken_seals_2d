@@ -7,9 +7,9 @@
 script = ExtResource( 1 )
 input = ExtResource( 2 )
 output_image_name = "dirt_shear"
-shear_amount = 0.295
+shear_amount = 0.19
 image_count = 1
 image_size_x = 32
-image_size_y = 64
+image_size_y = 96
 alpha_crop = true
 generate = false
