@@ -33,4 +33,4 @@ timer = 0.07
 
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
-texture_scale = 10.0
+texture_scale = 12.0
