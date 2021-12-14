@@ -25,6 +25,7 @@ sprite_path = NodePath("CharacterSprite")
 [node name="CharacterSprite" type="Sprite" parent="."]
 modulate = Color( 0.737255, 0.737255, 0.784314, 1 )
 position = Vector2( 0, -11.906 )
+z_index = 1
 texture = ExtResource( 1 )
 hframes = 16
 vframes = 16
