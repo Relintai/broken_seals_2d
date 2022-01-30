@@ -9,11 +9,6 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Aura",
-"class": "AuraGD",
-"language": "GDScript",
-"path": "res://scripts/auras/aura_script.gd"
-}, {
 "base": "Reference",
 "class": "BrushPrefabs",
 "language": "GDScript",
@@ -385,7 +380,6 @@ _global_script_classes=[ {
 "path": "res://scripts/game_modules/ui_window_module.gd"
 } ]
 _global_script_class_icons={
-"AuraGD": "",
 "BrushPrefabs": "",
 "CharacterAtlas2D": "",
 "CharacterAtlasEntry2D": "",
