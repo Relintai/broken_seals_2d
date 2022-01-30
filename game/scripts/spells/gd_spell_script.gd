@@ -36,8 +36,9 @@ func _cast_starts(info : SpellCastInfo) -> void:
 	if cooldown_global_cooldown_enabled and info.caster.gcd_hass() or info.caster.category_cooldown_hass(spell_type) or info.caster.cooldown_hass(id):
 		return
 	
-	if !info.caster.spell_hass_id(id):
-		return
+	# Todo Add source info to SpellCastInfo (player, item, spell, etc)
+	#if !info.caster.spell_hass_id(id):
+	#	return
 		
 	var entity_relation_type = info.caster.gets_relation_to(info.target)
 	
