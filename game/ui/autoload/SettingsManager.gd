@@ -1,6 +1,6 @@
 extends Node
 
-# Copyright (c) 2019-2020 Péter Magyar
+# Copyright (c) 2019-2021 Péter Magyar
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -42,10 +42,14 @@ var _settings : Dictionary = {
 		"use_vsync" : ProjectSettings.get("display/window/vsync/use_vsync"),
 		"vsync_via_compositor" : ProjectSettings.get("display/window/vsync/vsync_via_compositor"),
 	},
+	"game" : {
+	},
 	"ui" : {
 		"touchscreen_mode" : OS.has_touchscreen_ui_hint(),
 		"ui_scale" : ProjectSettings.get("display/window/size/ui_scale"),
 		"ui_scale_touch" : ProjectSettings.get("display/window/size/ui_scale_touch"),
+		"actionbar_show_keybind_text" : ProjectSettings.get("ui/actionbar/show_keybind_text"),
+		"actionbar_show_coldown_text" : ProjectSettings.get("ui/actionbar/show_cooldown_text"),
 	},
 	"debug" : {
 		"debug_info" : false
@@ -182,6 +186,12 @@ func set_ui_ui_scale(value : float) -> void:
 func set_ui_ui_scale_touch(value : float) -> void:
 	ProjectSettings.set("rendering/window/size/ui_scale_touch", value)
 	set_stretch()
+
+func set_ui_actionbar_show_keybind_text(value : bool) -> void:
+	ProjectSettings.set("ui/actionbar/show_keybind_text", value)
+	
+func set_ui_actionbar_show_coldown_text(value : bool) -> void:
+	ProjectSettings.set("ui/actionbar/show_cooldown_text", value)
 
 func set_stretch():
 	if !loaded:
