@@ -7,6 +7,10 @@
 [node name="Terrain2DWorldBlocky" type="Terrain2DWorldBlocky" groups=["save"]]
 library = ExtResource( 2 )
 level_generator = ExtResource( 3 )
-get_custom_transform = Transform2D( 1, 0.5, -1, 0.5, 0, 0 )
+mesh_transform_terrain = Transform2D( 1, 0.5, -1, 0.5, 0, 0 )
+mesh_transform_wall_north = Transform2D( 1, 0.5, 0, 1.2, 0, 16 )
+mesh_transform_wall_south = Transform2D( 1, 0.5, 0, 1.2, 0, 0 )
+mesh_transform_wall_east = Transform2D( 1, -0.5, 0, 1.2, 0, 0 )
+mesh_transform_wall_west = Transform2D( 1, -0.5, 0, 1.2, 0, 16 )
 build_flags = 127
 script = ExtResource( 1 )
