@@ -2,24 +2,24 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stone_1_albedo.png-8d9d1359c7386fbe18c4eb3d578278b2.stex"
+path="res://.import/magic_particle_1.png-f6b47f4031ed654afe77ae9d794e87a7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/planets/textures/stone_1_albedo.png"
-dest_files=[ "res://.import/stone_1_albedo.png-8d9d1359c7386fbe18c4eb3d578278b2.stex" ]
+source_file="res://textures/particle/magic_particle_1.png"
+dest_files=[ "res://.import/magic_particle_1.png-f6b47f4031ed654afe77ae9d794e87a7.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=0
+flags/repeat=1
 flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false

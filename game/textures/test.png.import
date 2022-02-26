@@ -2,19 +2,19 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stone_1_albedo.png-8d9d1359c7386fbe18c4eb3d578278b2.stex"
+path="res://.import/test.png-e87bdfc7eb0364f7afee143bf66dc9dd.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modules/planets/textures/stone_1_albedo.png"
-dest_files=[ "res://.import/stone_1_albedo.png-8d9d1359c7386fbe18c4eb3d578278b2.stex" ]
+source_file="res://data/voxel_textures/test.png"
+dest_files=[ "res://.import/test.png-e87bdfc7eb0364f7afee143bf66dc9dd.stex" ]
 
 [params]
 
-compress/mode=3
+compress/mode=0
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
@@ -28,7 +28,6 @@ process/fix_alpha_border=false
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
-process/normal_map_invert_y=false
 stream=false
 size_limit=0
 detect_3d=false

@@ -14,7 +14,7 @@ dest_files=[ "res://.import/grass_albedo.png-0370b00eba0f4d6a0653d2cbbd6b27b8.st
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0

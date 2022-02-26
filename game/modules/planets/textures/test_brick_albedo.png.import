@@ -14,7 +14,7 @@ dest_files=[ "res://.import/test_brick_albedo.png-95796f7bec59b800f32e9a35b47ac0
 
 [params]
 
-compress/mode=0
+compress/mode=3
 compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
