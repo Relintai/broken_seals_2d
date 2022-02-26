@@ -112,7 +112,7 @@ func _generation_finished():
 
 func set_generate(val):
 	if (val):
-		library.refresh_rects()
+		#library.refresh_rects()
 		#level_generator.setup(self, current_seed, false, library)
 		spawn(0, 0)
 		
