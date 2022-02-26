@@ -64,7 +64,32 @@ func load_character(file_name: String) -> void:
 	
 	if spawn_mobs:
 		generate()
-	
+
+func _create_chunk(x, y, chunk):
+	if !chunk:
+		chunk = Terrain2DChunkBlocky.new()
+
+	if chunk.job_get_count() == 0:
+		var tj : Terrain2DTerrain2DJob = Terrain2DTerrain2DJob.new()
+		var lj : Terrain2DLightJob = Terrain2DLightJob.new()
+		var pj : Terrain2DProp2DJob = Terrain2DProp2DJob.new()
+		
+		var mesher : Terrain2DMesherBlocky = Terrain2DMesherBlocky.new()
+		mesher.texture_scale = 8
+
+		tj.set_mesher(mesher)
+		
+		var liquid_mesher : Terrain2DMesherBlocky = Terrain2DMesherBlocky.new()
+		liquid_mesher.set_channel_index_type(Terrain2DChunkDefault.DEFAULT_CHANNEL_LIQUID_TYPE)
+		tj.set_liquid_mesher(liquid_mesher)
+
+		pj.set_prop_mesher(Terrain2DMesherBlocky.new())
+
+		chunk.job_add(lj)
+		chunk.job_add(tj)
+		chunk.job_add(pj)
+
+	return ._create_chunk(x, y, chunk)
 
 func generate() -> void:
 	for x in range(-2, 2):
