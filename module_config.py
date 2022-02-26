@@ -8,7 +8,6 @@ module_repositories = [
     [ ['https://github.com/Relintai/godot_fastnoise.git', 'git@github.com:Relintai/godot_fastnoise.git'], 'fastnoise', '' ],
     [ ['https://github.com/Relintai/thread_pool.git', 'git@github.com:Relintai/thread_pool.git'], 'thread_pool', '' ],
     [ ['https://github.com/Relintai/broken_seals_module.git', 'git@github.com:Relintai/broken_seals_module.git'], 'broken_seals_module', '' ],
-    [ ['https://github.com/Relintai/rtile_map.git', 'git@github.com:Relintai/rtile_map.git'], 'rtile_map', '' ],
     [ ['https://github.com/Relintai/mesh_data_resource.git', 'git@github.com:Relintai/mesh_data_resource.git'], 'mesh_data_resource', '' ],
     [ ['https://github.com/Relintai/mesh_utils.git', 'git@github.com:Relintai/mesh_utils.git'], 'mesh_utils', '' ],
     [ ['https://github.com/Relintai/props_2d.git', 'git@github.com:Relintai/props_2d.git'], 'props_2d', '' ],
@@ -18,6 +17,7 @@ module_repositories = [
 removed_modules = [
     [ ['https://github.com/Relintai/world_generator.git', 'git@github.com:Relintai/world_generator.git'], 'world_generator', '' ],
     [ ['https://github.com/Relintai/props.git', 'git@github.com:Relintai/props.git'], 'props', '' ],
+    [ ['https://github.com/Relintai/rtile_map.git', 'git@github.com:Relintai/rtile_map.git'], 'rtile_map', '' ],
 ]
 
 addon_repositories = [
