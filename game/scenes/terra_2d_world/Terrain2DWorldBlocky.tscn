@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scenes/terra_2d_world/Terrain2DWorldBlockyGD.gd" type="Script" id=1]
+[ext_resource path="res://scenes/terra_2d_world/new_terrain2dlibrarymergerpcm.tres" type="Terrain2DLibraryMergerPCM" id=2]
+[ext_resource path="res://scenes/terra_2d_world/new_terrain2dlevelgenerator.tres" type="Terrain2DLevelGenerator" id=3]
+
+[node name="Terrain2DWorldBlocky" type="Terrain2DWorldBlocky" groups=["save"]]
+library = ExtResource( 2 )
+level_generator = ExtResource( 3 )
+cell_size_x = 64
+cell_size_y = 64
+get_custom_transform = Transform2D( 1, 0.5, -1, 0.5, 0, 0 )
+build_flags = 127
+script = ExtResource( 1 )

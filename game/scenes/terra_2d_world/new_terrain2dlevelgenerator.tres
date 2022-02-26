@@ -1,0 +1,6 @@
+[gd_resource type="Terrain2DLevelGenerator" load_steps=2 format=2]
+
+[ext_resource path="res://scenes/terra_2d_world/levelgen.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
