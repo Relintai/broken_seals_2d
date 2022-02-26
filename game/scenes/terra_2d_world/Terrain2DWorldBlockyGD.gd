@@ -77,7 +77,7 @@ func _create_chunk(x, y, chunk):
 		var mesher : Terrain2DMesherBlocky = Terrain2DMesherBlocky.new()
 		mesher.base_light_value = 0.5
 		mesher.ao_strength = 0.25
-		mesher.texture_scale = 4
+		mesher.texture_scale = 1
 
 		tj.set_mesher(mesher)
 		
@@ -85,7 +85,7 @@ func _create_chunk(x, y, chunk):
 		liquid_mesher.base_light_value = 0.5
 		liquid_mesher.ao_strength = 0.25
 		liquid_mesher.set_channel_index_type(Terrain2DChunkDefault.DEFAULT_CHANNEL_LIQUID_TYPE)
-		liquid_mesher.texture_scale = 4
+		liquid_mesher.texture_scale = 1
 		tj.set_liquid_mesher(liquid_mesher)
 
 		pj.set_prop_mesher(Terrain2DMesherBlocky.new())
