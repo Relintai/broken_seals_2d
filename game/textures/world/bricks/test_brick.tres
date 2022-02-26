@@ -312,7 +312,6 @@ default_float = 0.0
 default_vector2 = Vector2( 0, 0 )
 default_vector3 = Vector3( 0, 0, 0 )
 default_color = Color( 0, 0, 0, 1 )
-input_property = SubResource( 27 )
 
 [sub_resource type="Resource" id=33]
 script = ExtResource( 5 )
@@ -322,5 +321,5 @@ postfix = "_albedo"
 
 [resource]
 script = ExtResource( 1 )
-image_size = Vector2( 256, 256 )
+image_size = Vector2( 128, 128 )
 nodes = [ SubResource( 11 ), SubResource( 14 ), SubResource( 19 ), SubResource( 21 ), SubResource( 24 ), SubResource( 26 ), SubResource( 31 ), SubResource( 33 ) ]

@@ -23,4 +23,5 @@ texture = ExtResource( 3 )
 
 [resource]
 texture_flags = 0
+max_atlas_size = 2048
 terra_surfaces = [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ]

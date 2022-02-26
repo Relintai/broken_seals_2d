@@ -259,5 +259,5 @@ opacity = SubResource( 26 )
 
 [resource]
 script = ExtResource( 1 )
-image_size = Vector2( 256, 256 )
+image_size = Vector2( 128, 128 )
 nodes = [ SubResource( 5 ), SubResource( 8 ), SubResource( 13 ), SubResource( 15 ), SubResource( 17 ), SubResource( 20 ), SubResource( 22 ), SubResource( 27 ) ]

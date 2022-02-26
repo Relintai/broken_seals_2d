@@ -46,7 +46,7 @@ texture = ExtResource( 6 )
 slots = [ null, SubResource( 1 ), null, null, null, null, null, null, null, null, null, null, null, null, SubResource( 2 ), null ]
 
 [node name="Character" type="CharacterSkeleton2D"]
-modulate = Color( 0.745098, 0.745098, 0.745098, 1 )
+modulate = Color( 0.929412, 0.929412, 0.929412, 1 )
 entity_type = 1
 attach_point_paths/0_left_hand = NodePath("")
 attach_point_paths/1_right_hand = NodePath("")

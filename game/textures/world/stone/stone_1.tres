@@ -176,7 +176,7 @@ points = PoolRealArray( 0, 0, 0, 0, 1, 0.0911017, 0, 0, 0, 1, 0.472458, 0.129412
 image = SubResource( 16 )
 input = SubResource( 17 )
 
-[sub_resource type="Resource" id=19]
+[sub_resource type="Resource" id=21]
 script = ExtResource( 2 )
 default_type = 5
 default_int = 0
@@ -184,15 +184,14 @@ default_float = 0.0
 default_vector2 = Vector2( 0, 0 )
 default_vector3 = Vector3( 0, 0, 0 )
 default_color = Color( 0, 0, 0, 1 )
-input_property = SubResource( 16 )
 
 [sub_resource type="Resource" id=20]
 script = ExtResource( 4 )
 graph_position = Vector2( 1120, 100 )
-image = SubResource( 19 )
+image = SubResource( 21 )
 postfix = "_albedo"
 
 [resource]
 script = ExtResource( 1 )
-image_size = Vector2( 256, 256 )
+image_size = Vector2( 128, 128 )
 nodes = [ SubResource( 5 ), SubResource( 7 ), SubResource( 10 ), SubResource( 15 ), SubResource( 18 ), SubResource( 20 ) ]

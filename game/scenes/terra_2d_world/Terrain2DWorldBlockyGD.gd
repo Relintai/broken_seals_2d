@@ -75,7 +75,7 @@ func _create_chunk(x, y, chunk):
 		var pj : Terrain2DProp2DJob = Terrain2DProp2DJob.new()
 		
 		var mesher : Terrain2DMesherBlocky = Terrain2DMesherBlocky.new()
-		mesher.texture_scale = 8
+		mesher.texture_scale = 4
 
 		tj.set_mesher(mesher)
 		

@@ -258,6 +258,7 @@ default_float = 0.0
 default_vector2 = Vector2( 0, 0 )
 default_vector3 = Vector3( 0, 0, 0 )
 default_color = Color( 0, 0, 0, 1 )
+input_property = SubResource( 21 )
 
 [sub_resource type="Resource" id=27]
 script = ExtResource( 8 )
@@ -284,5 +285,5 @@ width = 0.01
 
 [resource]
 script = ExtResource( 1 )
-image_size = Vector2( 256, 256 )
+image_size = Vector2( 128, 128 )
 nodes = [ SubResource( 5 ), SubResource( 7 ), SubResource( 10 ), SubResource( 13 ), SubResource( 18 ), SubResource( 20 ), SubResource( 25 ), SubResource( 27 ), SubResource( 30 ) ]
