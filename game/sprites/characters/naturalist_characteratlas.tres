@@ -1,7 +1,7 @@
 [gd_resource type="CharacterAtlas" load_steps=6 format=2]
 
 [ext_resource path="res://scripts/item_visuals/CharacterAtlas2D.gd" type="Script" id=1]
-[ext_resource path="res://characters/char_t1_outline_split.png" type="Texture" id=2]
+[ext_resource path="res://sprites/characters/char_t1_outline_split.png" type="Texture" id=2]
 [ext_resource path="res://scripts/item_visuals/CharacterAtlasEntry2D.gd" type="Script" id=3]
 
 [sub_resource type="CharacterAtlasEntry" id=1]

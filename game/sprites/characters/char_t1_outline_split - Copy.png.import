@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/char_t1_outline_split - Copy.png-88d6d74e7874948f07096fd2e5e6ae3a.stex"
+path="res://.import/char_t1_outline_split - Copy.png-50958da168a35a94e0ca987e44cc74f4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://characters/char_t1_outline_split - Copy.png"
-dest_files=[ "res://.import/char_t1_outline_split - Copy.png-88d6d74e7874948f07096fd2e5e6ae3a.stex" ]
+source_file="res://sprites/characters/char_t1_outline_split - Copy.png"
+dest_files=[ "res://.import/char_t1_outline_split - Copy.png-50958da168a35a94e0ca987e44cc74f4.stex" ]
 
 [params]
 

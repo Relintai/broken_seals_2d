@@ -2,7 +2,7 @@
 
 [ext_resource path="res://player/NetworkedPlayer.gd" type="Script" id=1]
 [ext_resource path="res://ui/nameplates/NamePlate.tscn" type="PackedScene" id=2]
-[ext_resource path="res://characters/Character.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sprites/characters/Character.tscn" type="PackedScene" id=3]
 
 [sub_resource type="EntityResourceHealth" id=1]
 
