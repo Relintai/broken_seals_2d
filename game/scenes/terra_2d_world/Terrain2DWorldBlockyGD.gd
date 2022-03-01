@@ -36,6 +36,8 @@ var _player : Entity
 func _enter_tree():
 	if !Engine.editor_hint && generate_on_ready:
 		spawn(0, 0)
+		
+	VisualServer.canvas_item_set_sort_children_by_y(get_canvas_item(), true)
 
 func spawn(x, y):
 	chunks_clear()
@@ -124,4 +126,4 @@ func set_generate(val):
 func get_generate():
 	return false
 
-	
+
