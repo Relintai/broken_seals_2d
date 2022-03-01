@@ -1,5 +1,5 @@
 tool
-extends Terrain2DWorldBlocky
+extends Terrain2DWorldSimple
 
 # Copyright (c) 2019 Péter Magyar
 #
@@ -69,28 +69,28 @@ func load_character(file_name: String) -> void:
 
 func _create_chunk(x, y, chunk):
 	if !chunk:
-		chunk = Terrain2DChunkBlocky.new()
+		chunk = Terrain2DChunkSimple.new()
 
 	if chunk.job_get_count() == 0:
 		var tj : Terrain2DTerrain2DJob = Terrain2DTerrain2DJob.new()
 		var lj : Terrain2DLightJob = Terrain2DLightJob.new()
 		var pj : Terrain2DProp2DJob = Terrain2DProp2DJob.new()
 		
-		var mesher : Terrain2DMesherBlocky = Terrain2DMesherBlocky.new()
+		var mesher : Terrain2DMesherSimple = Terrain2DMesherSimple.new()
 		mesher.base_light_value = 0.5
 		mesher.ao_strength = 0.25
 		mesher.texture_scale = 1
 
 		tj.set_mesher(mesher)
 		
-		var liquid_mesher : Terrain2DMesherBlocky = Terrain2DMesherBlocky.new()
+		var liquid_mesher : Terrain2DMesherSimple = Terrain2DMesherSimple.new()
 		liquid_mesher.base_light_value = 0.5
 		liquid_mesher.ao_strength = 0.25
 		liquid_mesher.set_channel_index_type(Terrain2DChunkDefault.DEFAULT_CHANNEL_LIQUID_TYPE)
 		liquid_mesher.texture_scale = 1
 		tj.set_liquid_mesher(liquid_mesher)
 
-		pj.set_prop_mesher(Terrain2DMesherBlocky.new())
+		pj.set_prop_mesher(Terrain2DMesherSimple.new())
 
 		chunk.job_add(lj)
 		chunk.job_add(tj)

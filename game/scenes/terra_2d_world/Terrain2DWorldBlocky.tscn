@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/terra_2d_world/new_terrain2dlibrarymergerpcm.tres" type="Terrain2DLibraryMergerPCM" id=2]
 [ext_resource path="res://scenes/terra_2d_world/new_terrain2dlevelgenerator.tres" type="Terrain2DLevelGenerator" id=3]
 
-[node name="Terrain2DWorldBlocky" type="Terrain2DWorldBlocky" groups=["save"]]
+[node name="Terrain2DWorldBlocky" type="Terrain2DWorldSimple" groups=["save"]]
 library = ExtResource( 2 )
 level_generator = ExtResource( 3 )
 mesh_transform_terrain = Transform2D( 1, 0.45, -1, 0.45, 0, 0 )
