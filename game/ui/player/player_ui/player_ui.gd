@@ -38,14 +38,17 @@ func _ready():
 	
 	if player_path != null:
 		var player = get_node(player_path)
-	
+		
+		if !player:
+			return
+
 		for c in windows.get_children():
 			if c.has_method("set_player"):
-				c.set_player(player)
+				c.set_player(player.entity)
 				
 		for c in gui_base.get_children():
 			if c.has_method("set_player"):
-				c.set_player(player)
+				c.set_player(player.entity)
 
 func initialize():
 	gui_base = get_node(gui_base_path)

@@ -24,6 +24,7 @@ extends ESSEntitySpawner
 # SOFTWARE.
 
 export(PackedScene) var player_display_scene : PackedScene
+export(PackedScene) var player_body_scene : PackedScene
 export(String) var spawn_parent_path : String = "/root/Main"
 export(int) var default_level_override : int = 0
 
@@ -242,6 +243,21 @@ func _request_entity_spawn(createinfo : EntityCreateInfo):
 	
 	if createinfo.entity_player_type == EntityEnums.ENTITY_PLAYER_TYPE_DISPLAY:
 		entity_node = player_display_scene.instance()
+		
+		if (createinfo.parent_path == ""):
+			if _spawn_parent == null:
+				_spawn_parent = get_tree().root.get_node(spawn_parent_path)
+			
+			if _spawn_parent.current_scene != null:
+				var spawn_parent = _spawn_parent.current_scene
+
+				spawn_parent.add_child(entity_node)
+		else:
+			get_tree().root.get_node(createinfo.parent_path).add_child(entity_node)
+		
+		entity_node.setup(createinfo)
+		createinfo.created_entity = entity_node
+		return
 	else:
 		if not createinfo.networked:
 			if createinfo.entity_controller == EntityEnums.ENITIY_CONTROLLER_PLAYER:
@@ -255,6 +271,11 @@ func _request_entity_spawn(createinfo : EntityCreateInfo):
 		print("EntityManager: entity node is null")
 		return null
 		
+	var body : Node2D = player_body_scene.instance()
+	body.add_child(entity_node)
+	body.entity = entity_node
+	
+		
 	entity_node.set_transform_2d(createinfo.transform2d)
 
 	if (createinfo.parent_path == ""):
@@ -264,9 +285,9 @@ func _request_entity_spawn(createinfo : EntityCreateInfo):
 		if _spawn_parent.current_scene != null:
 			var spawn_parent = _spawn_parent.current_scene
 
-			spawn_parent.add_child(entity_node)
+			spawn_parent.add_child(body)
 	else:
-		get_tree().root.get_node(createinfo.parent_path).add_child(entity_node)
+		get_tree().root.get_node(createinfo.parent_path).add_child(body)
 
 	entity_node.setup(createinfo)
 	

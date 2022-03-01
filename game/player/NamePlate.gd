@@ -53,7 +53,7 @@ func _enter_tree():
 	health_bar = get_node(health_bar_path) as TextureProgress
 	health_bar_label = get_node(health_bar_label_path) as Label
 	
-	entity = get_node("..") as Entity
+	entity = get_node("..").entity
 	entity.connect("centity_resource_added", self, "on_centity_resource_added")
 	
 	name_label.text = entity.centity_name

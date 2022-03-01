@@ -104,7 +104,7 @@ func generate() -> void:
 func save() -> void:
 	if _player == null or _player_file_name == "":
 		return
-
+	
 	ESS.entity_spawner.save_player(_player, _player_file_name)
 	
 func _generation_finished():

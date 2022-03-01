@@ -12,6 +12,7 @@
 
 [node name="GUILayer" type="CanvasLayer"]
 script = ExtResource( 6 )
+player_path = ".."
 gui_base_path = NodePath("GUI")
 buttons_path = NodePath("GUI/Buttons")
 windows_path = NodePath("GUI/Windows")

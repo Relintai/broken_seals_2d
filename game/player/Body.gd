@@ -24,9 +24,9 @@
 extends KinematicBody2D
 
 export(float) var MOUSE_SENSITIVITY : float = 0.05
-export(String) var world_path : String = "../.."
-export(NodePath) var model_path : NodePath = "Rotation_Helper/Model"
-export(NodePath) var character_skeleton_path : NodePath = "Character"
+export(String) var world_path : String = ".."
+#export(NodePath) var model_path : NodePath = "Rotation_Helper/Model"
+#export(NodePath) var character_skeleton_path : NodePath = "Character"
 
 const BASE_SPEED = 60.0
 
@@ -91,19 +91,33 @@ func _enter_tree() -> void:
 	world = get_node(world_path) as Node2D
 	camera = get_node_or_null("Camera") as Camera2D
 	
-	character_skeleton = get_node(character_skeleton_path)
-	entity = get_node("..")
-	entity.set_character_skeleton(character_skeleton)
+	#character_skeleton = get_node(character_skeleton_path)
+	#entity = get_node("..")
+	#entity.set_character_skeleton(character_skeleton)
 #	entity.connect("notification_ccast", self, "on_notification_ccast")
 	entity.connect("diesd", self, "on_diesd")
 	entity.connect("onc_entity_controller_changed", self, "on_c_controlled_changed")
-	owner = entity
+	entity.connect("centity_data_changed", self, "on_centity_data_changed")
 
 	on_c_controlled_changed()
 	
 	transform = entity.get_transform_2d(true)
-
+	entity.set_body(self)
 	set_physics_process(true)
+
+func on_centity_data_changed(entd : EntityData):
+	if entd.entity_species_data:
+		var sk : CharacterSkeleton2D = entd.entity_species_data.get_model_data(0).body.instance()
+		
+		if character_skeleton:
+			character_skeleton.queue_free()
+		
+		character_skeleton = sk
+		entity.set_character_skeleton(character_skeleton)
+		
+		if character_skeleton:
+			add_child(character_skeleton)
+
 
 func _process(delta : float) -> void:
 	if entity.ai_state == EntityEnums.AI_STATE_OFF:
@@ -133,6 +147,9 @@ func _process(delta : float) -> void:
 
 func _physics_process(delta : float) -> void:
 	if not _on:
+		return
+		
+	if !world:
 		return
 		
 	if world.initial_generation:
@@ -183,6 +200,9 @@ func process_input(delta: float) -> void:
 		return
 	
 	var input_length : float = input_dir.length_squared()
+	
+	if !character_skeleton:
+		return
 	
 	if input_length > 0.1:
 		#handle_graphic_facing(abs(dir.dot(Vector2(0, 1))) > 0.9)
@@ -398,9 +418,11 @@ func target(position : Vector2):
 
 	if results:
 		for result in results:
-			if result.collider and result.collider.owner is Entity:
-				entity.target_crequest_change((result.collider.owner as Node).get_path())
-				return
+			if result.collider:
+				
+				if result.collider.has_method("get_entity"):
+					entity.target_crequest_change((result.collider.get_entity() as Node).get_path())
+					return
 				
 		entity.target_crequest_change(NodePath())
 	else:
@@ -413,8 +435,8 @@ func cmouseover(event):
 
 	if results:
 		for result in results:
-			if result.collider and result.collider.owner is Entity:
-				var mo : Entity = result.collider.owner as Entity
+			if result.collider and result.collider.has_method("get_entity") :
+				var mo : Entity = result.collider.get_entity() as Entity
 			
 				if last_mouse_over != null and last_mouse_over != mo:
 					if is_instance_valid(last_mouse_over):
@@ -501,7 +523,7 @@ func on_c_controlled_changed():
 		set_process_unhandled_input(false)
 		var nameplatescn : PackedScene = ResourceLoader.load("res://ui/2d/world/nameplates/NamePlate.tscn")
 		_nameplate = nameplatescn.instance()
-		get_parent().add_child(_nameplate)
+		add_child(_nameplate)
 		
 func on_diesd(entity):
 	if dead:
@@ -525,3 +547,5 @@ remote func cset_position(pposition : Vector2) -> void:
 	pposition = pposition
 		
 		
+func get_entity() -> Entity:
+	return entity
