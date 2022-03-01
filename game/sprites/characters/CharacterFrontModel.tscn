@@ -463,18 +463,6 @@ tracks/37/keys = {
 "update": 0,
 "values": [ 0.0, 0.0, 0.0 ]
 }
-tracks/38/type = "value"
-tracks/38/path = NodePath("Hip/Torso/arm_l/hand_l:z_index")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/keys = {
-"times": PoolRealArray( 0, 1.5, 2 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 1, 1 ]
-}
 
 [sub_resource type="Animation" id=2]
 resource_name = "idle"
@@ -936,102 +924,6 @@ tracks/37/keys = {
 "update": 0,
 "values": [ 0.0, 0.0, 0.0 ]
 }
-tracks/38/type = "value"
-tracks/38/path = NodePath("Hip/Torso/arm_l/hand_l:show_behind_parent")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/39/type = "value"
-tracks/39/path = NodePath("Hip/Torso/arm_l:show_behind_parent")
-tracks/39/interp = 1
-tracks/39/loop_wrap = true
-tracks/39/imported = false
-tracks/39/enabled = true
-tracks/39/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/40/type = "value"
-tracks/40/path = NodePath("Hip/Torso/remote_arm_r:show_behind_parent")
-tracks/40/interp = 1
-tracks/40/loop_wrap = true
-tracks/40/imported = false
-tracks/40/enabled = true
-tracks/40/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/41/type = "value"
-tracks/41/path = NodePath("Hip/Torso/remote_arm_r/remote_hand_r:show_behind_parent")
-tracks/41/interp = 1
-tracks/41/loop_wrap = true
-tracks/41/imported = false
-tracks/41/enabled = true
-tracks/41/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/42/type = "value"
-tracks/42/path = NodePath("Hip/Torso/leg_r/foot_r:show_behind_parent")
-tracks/42/interp = 1
-tracks/42/loop_wrap = true
-tracks/42/imported = false
-tracks/42/enabled = true
-tracks/42/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/43/type = "value"
-tracks/43/path = NodePath("Hip/Torso/leg_r:show_behind_parent")
-tracks/43/interp = 1
-tracks/43/loop_wrap = true
-tracks/43/imported = false
-tracks/43/enabled = true
-tracks/43/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/44/type = "value"
-tracks/44/path = NodePath("Hip/Torso/leg_l:show_behind_parent")
-tracks/44/interp = 1
-tracks/44/loop_wrap = true
-tracks/44/imported = false
-tracks/44/enabled = true
-tracks/44/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/45/type = "value"
-tracks/45/path = NodePath("Hip/Torso/leg_l/foot_l:show_behind_parent")
-tracks/45/interp = 1
-tracks/45/loop_wrap = true
-tracks/45/imported = false
-tracks/45/enabled = true
-tracks/45/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
 
 [sub_resource type="Animation" id=3]
 tracks/0/type = "value"
@@ -1489,90 +1381,6 @@ tracks/37/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ 0.0 ]
-}
-tracks/38/type = "value"
-tracks/38/path = NodePath("Hip/Torso/leg_l/foot_l:show_behind_parent")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/39/type = "value"
-tracks/39/path = NodePath("Hip/Torso/leg_r:show_behind_parent")
-tracks/39/interp = 1
-tracks/39/loop_wrap = true
-tracks/39/imported = false
-tracks/39/enabled = true
-tracks/39/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/40/type = "value"
-tracks/40/path = NodePath("Hip/Torso/leg_l:show_behind_parent")
-tracks/40/interp = 1
-tracks/40/loop_wrap = true
-tracks/40/imported = false
-tracks/40/enabled = true
-tracks/40/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/41/type = "value"
-tracks/41/path = NodePath("Hip/Torso/remote_arm_r/remote_hand_r:show_behind_parent")
-tracks/41/interp = 1
-tracks/41/loop_wrap = true
-tracks/41/imported = false
-tracks/41/enabled = true
-tracks/41/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/42/type = "value"
-tracks/42/path = NodePath("Hip/Torso/remote_arm_r:show_behind_parent")
-tracks/42/interp = 1
-tracks/42/loop_wrap = true
-tracks/42/imported = false
-tracks/42/enabled = true
-tracks/42/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/43/type = "value"
-tracks/43/path = NodePath("Hip/Torso/arm_l:show_behind_parent")
-tracks/43/interp = 1
-tracks/43/loop_wrap = true
-tracks/43/imported = false
-tracks/43/enabled = true
-tracks/43/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
-}
-tracks/44/type = "value"
-tracks/44/path = NodePath("Hip/Torso/arm_l/hand_l:show_behind_parent")
-tracks/44/interp = 1
-tracks/44/loop_wrap = true
-tracks/44/imported = false
-tracks/44/enabled = true
-tracks/44/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -2034,102 +1842,6 @@ tracks/37/keys = {
 "update": 0,
 "values": [ 0.0, 0.0 ]
 }
-tracks/38/type = "value"
-tracks/38/path = NodePath("Hip/Torso/arm_l/hand_l:show_behind_parent")
-tracks/38/interp = 1
-tracks/38/loop_wrap = true
-tracks/38/imported = false
-tracks/38/enabled = true
-tracks/38/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, true ]
-}
-tracks/39/type = "value"
-tracks/39/path = NodePath("Hip/Torso/arm_l:show_behind_parent")
-tracks/39/interp = 1
-tracks/39/loop_wrap = true
-tracks/39/imported = false
-tracks/39/enabled = true
-tracks/39/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, true ]
-}
-tracks/40/type = "value"
-tracks/40/path = NodePath("Hip/Torso/remote_arm_r/remote_hand_r:show_behind_parent")
-tracks/40/interp = 1
-tracks/40/loop_wrap = true
-tracks/40/imported = false
-tracks/40/enabled = true
-tracks/40/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false, false, true ]
-}
-tracks/41/type = "value"
-tracks/41/path = NodePath("Hip/Torso/remote_arm_r:show_behind_parent")
-tracks/41/interp = 1
-tracks/41/loop_wrap = true
-tracks/41/imported = false
-tracks/41/enabled = true
-tracks/41/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1, 1.2 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false, false, true ]
-}
-tracks/42/type = "value"
-tracks/42/path = NodePath("Hip/Torso/leg_l/foot_l:show_behind_parent")
-tracks/42/interp = 1
-tracks/42/loop_wrap = true
-tracks/42/imported = false
-tracks/42/enabled = true
-tracks/42/keys = {
-"times": PoolRealArray( 0, 0.25, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false ]
-}
-tracks/43/type = "value"
-tracks/43/path = NodePath("Hip/Torso/leg_l:show_behind_parent")
-tracks/43/interp = 1
-tracks/43/loop_wrap = true
-tracks/43/imported = false
-tracks/43/enabled = true
-tracks/43/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ false, true, false, false ]
-}
-tracks/44/type = "value"
-tracks/44/path = NodePath("Hip/Torso/leg_r:show_behind_parent")
-tracks/44/interp = 1
-tracks/44/loop_wrap = true
-tracks/44/imported = false
-tracks/44/enabled = true
-tracks/44/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, true ]
-}
-tracks/45/type = "value"
-tracks/45/path = NodePath("Hip/Torso/leg_r/foot_r:show_behind_parent")
-tracks/45/interp = 1
-tracks/45/loop_wrap = true
-tracks/45/imported = false
-tracks/45/enabled = true
-tracks/45/keys = {
-"times": PoolRealArray( 0, 0.25, 0.75, 1 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ true, false, true, true ]
-}
 
 [sub_resource type="AnimationNodeTimeScale" id=5]
 
@@ -2191,7 +1903,7 @@ region_enabled = true
 region_rect = Rect2( 27, 57, 14, 6 )
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 0, -2.24034 )
+position = Vector2( 0, -2.23822 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
@@ -2306,6 +2018,7 @@ __meta__ = {
 [node name="hand_l" type="Sprite" parent="Hip/Torso/arm_l"]
 position = Vector2( 0, 6 )
 scale = Vector2( 0.995, 1.0113 )
+z_index = 1
 texture = ExtResource( 1 )
 offset = Vector2( 0, 2 )
 region_enabled = true
