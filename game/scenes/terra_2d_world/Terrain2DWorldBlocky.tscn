@@ -8,9 +8,9 @@
 library = ExtResource( 2 )
 level_generator = ExtResource( 3 )
 mesh_transform_terrain = Transform2D( 1, 0.45, -1, 0.45, 0, 0 )
-mesh_transform_wall_north = Transform2D( 1, 0.45, 0, 1.2, 0, 16 )
+mesh_transform_wall_north = Transform2D( 1, 0.45, 0, 1.2, 0, 0 )
 mesh_transform_wall_south = Transform2D( 1, 0.45, 0, 1.2, 0, 0 )
 mesh_transform_wall_east = Transform2D( 1, -0.45, 0, 1.2, 0, 0 )
-mesh_transform_wall_west = Transform2D( 1, -0.45, 0, 1.2, 0, 16 )
+mesh_transform_wall_west = Transform2D( 1, -0.45, 0, 1.2, 0, 0 )
 build_flags = 127
 script = ExtResource( 1 )
