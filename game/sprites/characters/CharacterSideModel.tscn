@@ -1890,14 +1890,14 @@ HUMANOID_BONES_MAX = 16,"
 bones = [ NodePath("Hip"), NodePath("Hip/Torso"), NodePath("Hip/leg_r"), NodePath("Hip/leg_r/foot_r"), NodePath("Hip/leg_r/foot_r/Position2D"), NodePath("Hip/leg_l"), NodePath("Hip/leg_l/foot_l"), NodePath("Hip/leg_l/foot_l/Position2D"), NodePath("arm_r"), NodePath("hand_r"), NodePath("Hip/Torso/remote_arm_r/remote_hand_r/Position2D"), NodePath("Hip/Torso/arm_l"), NodePath("Hip/Torso/arm_l/hand_l"), NodePath("Hip/Torso/arm_l/hand_l/end"), NodePath("Hip/Torso/Head"), NodePath("Hip/Torso/Head/Position2D") ]
 
 [node name="arm_r" type="Sprite" parent="."]
-position = Vector2( -3.5, -24.3147 )
+position = Vector2( -3.5, -24.2993 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )
 region_enabled = true
 region_rect = Rect2( 1, 11, 4, 9 )
 
 [node name="hand_r" type="Sprite" parent="."]
-position = Vector2( -3.5, -18.8147 )
+position = Vector2( -3.5, -18.7993 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, 3 )
 region_enabled = true
@@ -1972,7 +1972,7 @@ __meta__ = {
 }
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 3.65245e-05, -1.69926 )
+position = Vector2( 3.83957e-05, -1.68385 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
@@ -2039,7 +2039,6 @@ __meta__ = {
 
 [node name="hand_l" type="Sprite" parent="Hip/Torso/arm_l"]
 position = Vector2( 0, 6 )
-z_index = 1
 texture = ExtResource( 1 )
 offset = Vector2( 0, 2 )
 region_enabled = true
