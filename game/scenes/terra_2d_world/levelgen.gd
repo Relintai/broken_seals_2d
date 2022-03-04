@@ -25,28 +25,28 @@ func _generate_chunk(chunk : Terrain2DChunk):
 			chunk.set_voxel(3, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_TYPE)
 			
 			if x == 8 && y == 8:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_NORTH | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_WEST, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_NORTH | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_WEST | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 				chunk.set_voxel(3, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_TYPE)
 				
 			elif x == 10 && y == 10:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_EAST | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_SOUTH, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_EAST | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_SOUTH | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 				chunk.set_voxel(3, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_TYPE)
 				
 			elif x == 8 && y == 10:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_WEST | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_SOUTH, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_WEST | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_SOUTH | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 			elif x == 8:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_WEST, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_WEST | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 			
 			elif y == 8 && x == 10:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_NORTH | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_EAST, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_NORTH | Terrain2DChunkDefault.FLAG_CHANNEL_WALL_EAST | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 			elif y == 8:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_NORTH, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_NORTH | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 				
 			elif x == 10:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_EAST, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_EAST | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 				
 			elif y == 10:
-				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_SOUTH, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
+				chunk.set_voxel(Terrain2DChunkDefault.FLAG_CHANNEL_WALL_SOUTH | Terrain2DChunkDefault.FLAG_CHANNEL_COLLIDER, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_FLAGS)
 				
 			else:
 				chunk.set_voxel(0, x, y, Terrain2DChunkDefault.DEFAULT_CHANNEL_TYPE)
