@@ -39,7 +39,7 @@ func _enter_tree():
 		
 	VisualServer.canvas_item_set_sort_children_by_y(get_canvas_item(), true)
 
-func spawn(x, y):
+func spawn(x : int, y : int):
 	chunks_clear()
 	
 	for xx in range(x - spawn_range, x + spawn_range):
@@ -56,16 +56,23 @@ func get_clear():
 
 func load_character(file_name: String) -> void:
 	_player_file_name = file_name
-	_player = ESS.entity_spawner.load_player(file_name, Vector3(5, 5, 0), 1) as Entity
+	
+	#This is where things start to break due to preceision
+	#var world_pos : Vector2 = Vector2(5000000, 5000000) # In world coords: (0, 4500000), chunk coords: (9765, 9765)
+	
+	var world_pos : Vector2 = Vector2(0, 0)
+	var tm : Vector2 = mesh_transform_terrain.xform(world_pos)
+	
+	_player = ESS.entity_spawner.load_player(file_name, tm, 1) as Entity
 	#TODO hack, do this properly
 #	_player.set_physics_process(false)
 	
 	Server.sset_seed(_player.sseed)
+
+	spawn(world_pos.x / (cell_size_x * chunk_size_x), world_pos.y / (cell_size_y * chunk_size_x))
 	
-	spawn(0, 0)
-	
-	if spawn_mobs:
-		generate()
+	#if spawn_mobs:
+	#	generate()
 
 func _create_chunk(x, y, chunk):
 	if !chunk:
@@ -101,7 +108,7 @@ func _create_chunk(x, y, chunk):
 func generate() -> void:
 	for x in range(-2, 2):
 		for y in range(-2, 2):
-			ESS.entity_spawner.spawn_mob(1, 50, Vector3(x * 200, y * 200, 0))
+			ESS.entity_spawner.spawn_mob(1, 50, Vector2(x * 200, y * 200))
 
 func save() -> void:
 	if _player == null or _player_file_name == "":

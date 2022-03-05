@@ -59,14 +59,14 @@ func despawn_for(player : Entity, target: Entity) -> void:
 	print("despawnfor " + target.name)
 #	rpc_id(player.get_network_master(), "creceive_despawn_for", target.get_path())
 	
-remote func creceive_spawn_for(data: String, global_name : String, position: Vector3) -> Entity:
+remote func creceive_spawn_for(data: String, global_name : String, position: Vector2) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 
 	createinfo.player_name = global_name
 	createinfo.entity_controller = EntityEnums.ENITIY_CONTROLLER_PLAYER
 	createinfo.entity_player_type = EntityEnums.ENTITY_PLAYER_TYPE_NETWORKED
 	createinfo.serialized_data = parse_json(data)
-	createinfo.transform.origin = position
+	createinfo.transform2d.origin = position
 	
 	ESS.request_entity_spawn(createinfo)
 	
@@ -81,7 +81,7 @@ remote func creceive_despawn_for(path : NodePath) -> void:
 	if ent:
 		ent.queue_free()
 
-puppet func spawn_owned_player(data : String, position : Vector3) -> Entity:
+puppet func spawn_owned_player(data : String, position : Vector2) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 
 	createinfo.guid = get_tree().multiplayer.get_network_unique_id()
@@ -89,7 +89,7 @@ puppet func spawn_owned_player(data : String, position : Vector3) -> Entity:
 	createinfo.entity_controller = EntityEnums.ENITIY_CONTROLLER_PLAYER
 	createinfo.entity_player_type = EntityEnums.ENTITY_PLAYER_TYPE_PLAYER
 	createinfo.serialized_data = parse_json(data)
-	createinfo.transform.origin = position
+	createinfo.transform2d.origin = position
 	
 	ESS.request_entity_spawn(createinfo)
 	
@@ -97,7 +97,7 @@ puppet func spawn_owned_player(data : String, position : Vector3) -> Entity:
 	
 	return createinfo.created_entity
 
-func load_player(file_name : String, position : Vector3, network_owner : int) -> Entity:
+func load_player(file_name : String, position : Vector2, network_owner : int) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 
 	createinfo.guid = _next_entity_guid
@@ -106,7 +106,7 @@ func load_player(file_name : String, position : Vector3, network_owner : int) ->
 	createinfo.entity_controller = EntityEnums.ENITIY_CONTROLLER_PLAYER
 	createinfo.entity_player_type = EntityEnums.ENTITY_PLAYER_TYPE_PLAYER
 	createinfo.serialized_data = load_file(file_name)
-	createinfo.transform.origin = position
+	createinfo.transform2d.origin = position
 	createinfo.networked = false
 #	print("Player spawned ")
 	ESS.request_entity_spawn(createinfo)
@@ -158,7 +158,7 @@ func spawn_display_player(file_name : String, node_path : NodePath) -> Entity:
 	
 	return createinfo.created_entity
 
-func spawn_networked_player(class_id : int,  position : Vector3, name : String, node_name : String, sid : int) -> Entity:
+func spawn_networked_player(class_id : int,  position : Vector2, name : String, node_name : String, sid : int) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 	var cls : EntityData = ESS.resource_db.get_player_character_data(class_id)
 	var class_profile : ClassProfile = ProfileManager.get_class_profile(class_id)
@@ -178,9 +178,8 @@ func spawn_networked_player(class_id : int,  position : Vector3, name : String, 
 	createinfo.entity_controller = EntityEnums.ENITIY_CONTROLLER_PLAYER
 	createinfo.entity_player_type = EntityEnums.ENTITY_PLAYER_TYPE_NETWORKED
 	createinfo.network_owner = sid
-	createinfo.transform.origin = position
+	createinfo.transform2d.origin = position
 	createinfo.networked =  false
-	createinfo.transform.origin = position
 
 	ESS.request_entity_spawn(createinfo)
 	
@@ -188,7 +187,7 @@ func spawn_networked_player(class_id : int,  position : Vector3, name : String, 
 	
 	return createinfo.created_entity
 	
-func spawn_player(class_id : int,  position : Vector3, name : String, node_name : String, network_owner : int) -> Entity:
+func spawn_player(class_id : int,  position : Vector2, name : String, node_name : String, network_owner : int) -> Entity:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 	var cls : EntityData = ESS.resource_db.get_player_character_data(class_id)
 	var class_profile : ClassProfile = ProfileManager.get_class_profile(class_id)
@@ -208,7 +207,7 @@ func spawn_player(class_id : int,  position : Vector3, name : String, node_name 
 	createinfo.entity_controller = EntityEnums.ENITIY_CONTROLLER_PLAYER
 	createinfo.entity_player_type = EntityEnums.ENTITY_PLAYER_TYPE_PLAYER
 	createinfo.network_owner = network_owner
-	createinfo.transform.origin = position
+	createinfo.transform2d.origin = position
 	createinfo.networked =  false
 
 	ESS.request_entity_spawn(createinfo)
@@ -218,7 +217,7 @@ func spawn_player(class_id : int,  position : Vector3, name : String, node_name 
 	return createinfo.created_entity
 
 	
-func spawn_mob(class_id : int, level : int, position : Vector3) -> void:
+func spawn_mob(class_id : int, level : int, position : Vector2) -> void:
 	var createinfo : EntityCreateInfo = EntityCreateInfo.new()
 	
 	var cls : EntityData = ESS.get_resource_db().get_entity_data(class_id)
@@ -229,7 +228,7 @@ func spawn_mob(class_id : int, level : int, position : Vector3) -> void:
 	createinfo.level = level
 	createinfo.entity_controller = EntityEnums.ENITIY_CONTROLLER_AI
 	createinfo.entity_player_type = EntityEnums.ENTITY_PLAYER_TYPE_AI
-	createinfo.transform2d.origin = Vector2(position.x, position.y)
+	createinfo.transform2d.origin = position
 	
 	ESS.request_entity_spawn_deferred(createinfo)
 	
@@ -275,7 +274,6 @@ func _request_entity_spawn(createinfo : EntityCreateInfo):
 	body.add_child(entity_node)
 	body.entity = entity_node
 	
-		
 	entity_node.set_transform_2d(createinfo.transform2d)
 
 	if (createinfo.parent_path == ""):
