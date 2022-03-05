@@ -1903,7 +1903,7 @@ region_enabled = true
 region_rect = Rect2( 27, 57, 14, 6 )
 
 [node name="Torso" type="Sprite" parent="Hip"]
-position = Vector2( 0, -2.23822 )
+position = Vector2( 0, -2.28639 )
 texture = ExtResource( 1 )
 offset = Vector2( 0, -5 )
 region_enabled = true
@@ -2018,7 +2018,6 @@ __meta__ = {
 [node name="hand_l" type="Sprite" parent="Hip/Torso/arm_l"]
 position = Vector2( 0, 6 )
 scale = Vector2( 0.995, 1.0113 )
-z_index = 1
 texture = ExtResource( 1 )
 offset = Vector2( 0, 2 )
 region_enabled = true
