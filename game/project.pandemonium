@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": @"GDScript",
 "path": "res://player/CharacterSkeleton2DGD.gd"
 }, {
-"base": "ColorRect",
-"class": @"ColorTile",
-"language": @"GDScript",
-"path": "res://addons/color-palette/ColorTile.gd"
-}, {
 "base": "Resource",
 "class": @"Continent",
 "language": @"GDScript",
@@ -53,11 +48,6 @@ _global_script_classes=[ {
 "class": @"EntityDataGD",
 "language": @"GDScript",
 "path": "res://scripts/entities/EntityDataGD.gd"
-}, {
-"base": "Container",
-"class": @"FlexGridContainer",
-"language": @"GDScript",
-"path": "res://addons/color-palette/utilities/FlexGridContainer.gd"
 }, {
 "base": "Resource",
 "class": @"GameModule",
@@ -118,16 +108,6 @@ _global_script_classes=[ {
 "class": @"NetworkedPlayerGD",
 "language": @"GDScript",
 "path": "res://player/NetworkedPlayer.gd"
-}, {
-"base": "Reference",
-"class": @"Palette",
-"language": @"GDScript",
-"path": "res://addons/color-palette/Palette.gd"
-}, {
-"base": "Reference",
-"class": @"PaletteImporter",
-"language": @"GDScript",
-"path": "res://addons/color-palette/PaletteImporter.gd"
 }, {
 "base": "",
 "class": @"PlayerGD",
@@ -195,43 +175,39 @@ _global_script_classes=[ {
 "path": "res://addons/world_generator/resources/zone.gd"
 } ]
 _global_script_class_icons={
-@"HumanoidCharacterBones2D": "",
-@"CharacterAtlas2D": "",
-@"CharacterSkeketonAttachPoint": "",
-@"FlexGridContainer": "res://addons/color-palette/utilities/FlexGridContainerIcon.png",
-@"GameModule": "",
-@"PlayerGD": "",
-@"WorldGeneratorSettings": "",
-@"ItemVisual2D": "",
-@"MobGD": "",
-@"PaletteImporter": "",
-@"PlayerMaster": "",
-@"SpeedResource": "",
-@"WorldGenRaycast": "",
 @"CharacterAtlasEntry2D": "",
 @"Continent": "",
 @"EntityAIGD": "",
 @"EntityDataGD": "",
 @"WorldGenWorld": "",
-@"CharacterSkeleton2DGD": "",
-@"ItemVisualEntry2D": "",
-@"NetworkedPlayerGD": "",
-@"SpellEffectVisualBasic": "",
+@"ItemVisual2D": "",
+@"MobGD": "",
+@"PlayerMaster": "",
+@"SpeedResource": "",
+@"WorldGenRaycast": "",
+@"CharacterAtlas2D": "",
+@"CharacterSkeketonAttachPoint": "",
+@"GameModule": "",
+@"PlayerGD": "",
+@"WorldGeneratorSettings": "",
+@"HumanoidCharacterBones2D": "",
 @"SpellGD": "",
-@"UIWindowModule": "",
+@"SpellEffectVisualBasic": "",
+@"NetworkedPlayerGD": "",
+@"ItemVisualEntry2D": "",
+@"CharacterSkeleton2DGD": "",
 @"Zone": "",
-@"ColorTile": "",
-@"Main": "",
-@"ManaResource": "",
-@"Menu": "",
-@"UIGuiChildModule": "",
+@"UIWindowModule": "",
 @"WorldGenBaseResource": "",
-@"DisplayPlayerGD": "",
-@"HealthResource": "",
-@"ItemTemplateGD": "",
+@"UIGuiChildModule": "",
+@"Menu": "",
+@"ManaResource": "",
+@"Main": "",
 @"SubZone": "",
-@"LayeredTextureMaker": "",
-@"Palette": ""
+@"ItemTemplateGD": "",
+@"HealthResource": "",
+@"DisplayPlayerGD": "",
+@"LayeredTextureMaker": ""
 }
 Node="input/actionbar_5_11"
 
@@ -275,7 +251,7 @@ window/size/ui_scale_touch=1.0
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/color-palette/plugin.cfg", "res://addons/data_manager/plugin.cfg", "res://addons/tile_generator/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/data_manager/plugin.cfg", "res://addons/tile_generator/plugin.cfg" )
 
 [ess]
 
