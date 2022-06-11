@@ -191,22 +191,22 @@ _global_script_class_icons={
 @"PlayerGD": "",
 @"WorldGeneratorSettings": "",
 @"HumanoidCharacterBones2D": "",
-@"SpellGD": "",
-@"SpellEffectVisualBasic": "",
-@"NetworkedPlayerGD": "",
-@"ItemVisualEntry2D": "",
 @"CharacterSkeleton2DGD": "",
-@"Zone": "",
+@"ItemVisualEntry2D": "",
+@"NetworkedPlayerGD": "",
+@"SpellEffectVisualBasic": "",
+@"SpellGD": "",
 @"UIWindowModule": "",
-@"WorldGenBaseResource": "",
-@"UIGuiChildModule": "",
-@"Menu": "",
-@"ManaResource": "",
+@"Zone": "",
 @"Main": "",
-@"SubZone": "",
-@"ItemTemplateGD": "",
-@"HealthResource": "",
+@"ManaResource": "",
+@"Menu": "",
+@"UIGuiChildModule": "",
+@"WorldGenBaseResource": "",
 @"DisplayPlayerGD": "",
+@"HealthResource": "",
+@"ItemTemplateGD": "",
+@"SubZone": "",
 @"LayeredTextureMaker": ""
 }
 Node="input/actionbar_5_11"
@@ -226,7 +226,6 @@ ThemeAtlas="*res://ui/autoload/ThemeAtlas.tscn"
 WorldNumbers="*res://ui/2d/world/world_numbers_2d/WorldNumbers.tscn"
 CursorManager="*res://cursors/autoload/CursorManager.tscn"
 Settings="*res://ui/autoload/SettingsManager.tscn"
-Logger="*res://autoload/Logger.tscn"
 DataManager="*res://scripts/game_modules/DataManager.tscn"
 EntitySpawner="*res://player/bs_entity_spawner.tscn"
 

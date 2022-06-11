@@ -95,7 +95,7 @@ func connect_to_server_websocket(address : String = "127.0.0.1", p_port : int = 
 	return err
 
 func _network_peer_connected(id : int) -> void:
-#	Logger.verbose("NetworkManager peer connected " + str(id))
+#	PLogger.log_trace("NetworkManager peer connected " + str(id))
 	
 #	for p in splayers_array:
 #		rpc_id(id, "cspawn_player", p.my_info, p.sid, p.player.translation)
@@ -111,7 +111,7 @@ func _network_peer_connected(id : int) -> void:
 	rpc_id(id, "cset_seed", _sseed)
 
 func _network_peer_disconnected(id : int) -> void:
-#	Logger.verbose("NetworkManager peer disconnected " + str(id))
+#	PLogger.log_trace("NetworkManager peer disconnected " + str(id))
 	
 	var player : PlayerMaster = splayers_dict[id]
 	splayers_dict.erase(id)
@@ -125,7 +125,7 @@ func _network_peer_disconnected(id : int) -> void:
 		emit_signal("splayer_master_destroyed", player)
 
 func _connected_to_server() -> void:
-#	Logger.verbose("NetworkManager _connected_to_server")
+#	PLogger.log_trace("NetworkManager _connected_to_server")
 	
 	var pm : PlayerMaster = PlayerMaster.new()
 	pm.sid = get_tree().get_network_unique_id()
@@ -135,7 +135,7 @@ func _connected_to_server() -> void:
 	emit_signal("cplayer_master_created", pm)
 	
 func _server_disconnected() -> void:
-#	Logger.verbose("_server_disconnected")
+#	PLogger.log_trace("_server_disconnected")
 	
 	# Server kicked us; show error and abort.
 	
@@ -144,7 +144,7 @@ func _server_disconnected() -> void:
 		player.queue_free()
 
 func _connection_failed() -> void:
-#	Logger.verbose("NetworkManager _connection_failed")
+#	PLogger.log_trace("NetworkManager _connection_failed")
 	
 	pass # Could not even connect to server; abort.
 
@@ -162,7 +162,7 @@ remote func cset_seed(pseed):
 	
 
 func set_class():
-#	Logger.verbose("set_class")
+#	PLogger.log_trace("set_class")
 	
 	if not get_tree().is_network_server():
 		rpc_id(1, "crequest_select_class", local_player_master.my_info)
@@ -170,7 +170,7 @@ func set_class():
 		crequest_select_class(local_player_master.my_info)
 
 remote func crequest_select_class(info : Dictionary) -> void:
-#	Logger.verbose("NetworkManager crequest_select_class")
+#	PLogger.log_trace("NetworkManager crequest_select_class")
 	
 	if get_tree().is_network_server():
 		var sid : int =  get_tree().multiplayer.get_rpc_sender_id()
@@ -182,7 +182,7 @@ remote func crequest_select_class(info : Dictionary) -> void:
 		
 
 remotesync func cspawn_player(info : Dictionary, sid : int, pos : Vector3):
-#	Logger.verbose("NetworkManager cspawn_player")
+#	PLogger.log_trace("NetworkManager cspawn_player")
 	
 	if sid == get_tree().get_network_unique_id():
 		local_player_master.player =  ESS.get_ess_entity_spawner().spawn_player(info["selected_class"] as int, pos, info["name"] as String, str(sid), sid)
@@ -212,7 +212,7 @@ master func sreceive_upload_character(data: String) -> void:
 	ESS.get_ess_entity_spawner().spawn_networked_player_from_data(data, Vector3(0, 10, 0), multiplayer.get_rpc_sender_id())
 	
 func set_terrarin_player():
-#	Logger.verbose("NetworkManager cspawn_player")
+#	PLogger.log_trace("NetworkManager cspawn_player")
 	
 	var terrarin : Node = get_node("/root/GameScene/VoxelWorld")
 	
