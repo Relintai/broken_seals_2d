@@ -1,6 +1,6 @@
-extends Node2D
+extends Node
 
-# Copyright (c) 2019 Péter Magyar
+# Copyright (c) 2022 Péter Magyar
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,81 +20,75 @@ extends Node2D
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-export(PackedScene) var world_layer : PackedScene
-
-export(bool) var spawn_mobs : bool = true
-export(bool) var editor_generate : bool = false setget set_editor_generate, get_editor_generate
+export(bool) var generate_on_ready : bool = true
 export(bool) var show_loading_screen : bool = true
-export(bool) var generate_on_ready : bool = false
-
-var initial_generation : bool = false
-
-var _editor_generate : bool
 
 var _player_file_name : String
 var _player : Entity
 
-func _ready():
-#	print(get_layer(2))
-	pass # Replace with function body.
+# World generation
 
-func get_layer(index : int) -> Navigation2D:
-	for ch in get_children():
-		if ch.has_method('collision_layer') and ch.collision_layer() == index:
-			return ch
+# Gets called in ready
+func generate_world():
+	# just spawn in the terrain world
+	# make it register itself, and then call generation_finished
+	pass
 
-	var wl : Navigation2D = world_layer.instance() as Navigation2D
-	add_child(wl)
-	wl.collision_layer = index
+func generation_finished():
+	# Spawn the player
+	# Entity should be placed under Entities
+	# Entity spawner will need to have a layer id for spawning stuff
+	# Entity creates it's body and asks for the proper parent node using 
+	# get_layer()
 	
-	return wl
+	if show_loading_screen and not Engine.editor_hint:
+		get_node("..").hide_loading_screen()
+
+# Layers
+
+func get_layer_spawn_point() -> Transform2D:
+	return Transform2D()
+	
+func get_default_layer_id() -> int:
+	return 0
+	
+func get_layer(id : int) -> Node:
+	return null
+
+func register_layer(layer : Node, default_spawn_point : Transform2D, is_default : bool = false) -> int:
+	return 0 #index / id
+
+func unregister_layer(layer : Node) -> void:
+	pass
+
+func unregister_layer_id(id : bool) -> void:
+	pass
+	
+func clear_layers() -> void:
+	pass
+	
+#Character
 
 func load_character(file_name: String) -> void:
 	_player_file_name = file_name
-	_player = ESS.entity_spawner.load_player(file_name, Vector3(5, 5, 0), 1) as Entity
-	#TODO hack, do this properly
-#	_player.set_physics_process(false)
 	
-	Server.sset_seed(_player.sseed)
+	#This is where things start to break due to preceision
+	#var world_pos : Vector2 = Vector2(5000000, 5000000) # In world coords: (0, 4500000), chunk coords: (9765, 9765)
 	
-	if spawn_mobs:
-		generate()
+#	var world_pos : Vector2 = Vector2(0, 0)
+#	var tm : Vector2 = mesh_transform_terrain.xform(world_pos)
 	
-	
-
-
-func generate() -> void:
-	for x in range(-2, 2):
-		for y in range(-2, 2):
-			ESS.entity_spawner.spawn_mob(1, 50, Vector3(x * 200, y * 200, 0))
+#	_player = ESS.entity_spawner.load_player(file_name, tm, 1) as Entity
+#	Server.sset_seed(_player.sseed)
+#	spawn(world_pos.x / (cell_size_x * chunk_size_x), world_pos.y / (cell_size_y * chunk_size_x))
 
 func save() -> void:
 	if _player == null or _player_file_name == "":
 		return
-
+	
 	ESS.entity_spawner.save_player(_player, _player_file_name)
 	
-func _generation_finished():
+func _ready():
+	if generate_on_ready:
+		generate_world()
 
-	if show_loading_screen and not Engine.editor_hint:
-		get_node("..").hide_loading_screen()
-		
-#	if _player:
-#		_player.set_physics_process(true)
-
-func get_editor_generate() -> bool:
-	return _editor_generate
-	
-func set_editor_generate(value : bool) -> void:
-	if value:
-		#library.refresh_rects()
-		
-		#level_generator.setup(self, current_seed, false, library)
-		#spawn()
-		pass
-	else:
-		#spawned = false
-		#clear()
-		pass
-		
-	_editor_generate = value
