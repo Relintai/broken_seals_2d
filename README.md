@@ -1,41 +1,122 @@
 # Broken Seals 2D
 
-A 2D version of [Broken Seals](https://github.com/Relintai/broken_seals).
+An experimental 2d version of Broken Seals.
 
-Same idea, similar design, but with a 2d renderer. (Of course with changes to make it work/fun in 2d.)
+It is on an early tech demo level. It uses Terraman 2D for it's terrain. It still needs some work, and mob spawning still need to be 
+re-enabled.
 
-Still needs a lot of work on the visual style though.
+This project now uses the ![Pandemonium Engine](https://github.com/Relintai/pandemonium_engine), which is my custom version of godot.
+
+The project also requires the presence of some of my engine modules, Pandemonium contains all of them. See [here](https://github.com/Relintai/pandemonium_engine/tree/master/modules).
+
+You can get binaries under the releases tab [here](https://github.com/Relintai/broken_seals_2d/releases).\
+You can also try a live version running in the browser [here](https://relintai.github.io/broken_seals_2d/).
+
+Unfortunately the web editor needs custom http headers to work and I can't set that up from github.io, so right now I don't have a hosted version of that.
+
+#### Screenshot
+
+![Broken Seals 2D](pictures/screen.png)
+
+## Status 
+
+Currently I'm mostly working on the 3d project and the engine, eventually I'll likely get back to this to try to add
+some actual content.
+
+## Features
+
+### Characters
+
+- Main and secondary stats all work, they are also customizable in the project settings. They also have built in maint stat -> secondary stat conversion support.
+- Character resources all work and scriptable. (Like health, mana, speed, energy etc) Also you can dynamically add it and remove it from a character.
+- Tab targeting support.
+- Spells, and auras are fully scriptable, and networked.
+- Actionbar, actionbar profiles support.
+- Spell learning support.
+- Talent support, with multiple talent trees.
+- Loot.
+- Equipment support including weapons, clothes, and also other attachments. Although starter gear support is not yet finished.
+- Support for changing clothes via texture merging.
+- Support for changing parts of models via clothes. Also support for alternative bodyparts.
+- Character models are using merged meshes and textures, with generated LOD. (This is also multi threaded, with fallback when no threads are available.) This system is using MeshDataResources.
+- Generic attach point support for the character skeletons. (Spell cast particle effects, spell effects, also the same system can be used for weapons.)
+- Interaction support.
+- Vendors, Trainers, Crafting.
+- Fully scriptable ai support.
+- Control over characters can be easily changed by the server, and the character bodies are scripted to act accordingly automatically. For example mind control effects can be implemented with this system.
+
+Missing:
+
+- Character customization support (like selecting hairtyles). It's mostly there, but some crucial features are still missing.
+- Temporary character model change support. Think of polymorph effects, toys etc. Needs the character customization support first.
+
+### UI
+
+- Menu and game ui.
+- Actionbars with keybind support. Also the icons that you drag to the actionbar actually gets merged into the ui's texture to reduce drawcalls.
+- Character, talent, spellbook, crafting, inventory, loot, vendor, trainer windows are all implemented.
+- Easily scriptable options dialog.
+- The menu has full support for keyboard / controller navigation. (The game itself misses it at the moment though.)
+- Touchscreen controls. It will also make the buttons bigger if it detects a touchscreen.
+- Keybind window.
+- About window.
+
+## Project overview
+
+As stated in the opening section the project uses a custom version of the godot engine.
+
+The project's workflow has been set up so you can easily compile this version for yourself if you want to.
+
+See the [Compiling](#compiling) section if you want to know how to do this.
+
+### Engine
+
+Currently the [Pandemonium Engine](https://github.com/Relintai/pandemonium_engine) is used as the engine for this project,
+which is a heavily customized verison of the [Godot game engine](https://godotengine.org/). It's based on the 3.x branch. 
+
+It contains my engine modules, and also it got significanlty slimmed down compared to vanilla Godot.
+
+For a more in-depth changelog see it's changelog file [here](https://github.com/Relintai/pandemonium_engine/blob/master/CHANGELOG.md).
+
+### Game
+
+The [/game](https://github.com/Relintai/broken_seals_2d/tree/master/game) folder contains the game's code and assets.
+This is the folder you are supposed to open in the editor.
+
+The game's folder structure should be (hopefully) mostly self explanatory.
+
+#### Game Modules
+
+I designed the game's code to be highly modular, so I created a [loader module](https://github.com/Relintai/broken_seals_2d/tree/master/game/scripts/game_modules). \
+It will look for files named ` game_module.tres ` and call methods on them on certain events.\
+This system uses the [DataManager](https://github.com/Relintai/broken_seals_2d/blob/master/game/scripts/game_modules/DataManager.gd) singleton.
+
+For example this is how the ui initializes itself:
+
+The player's [body](https://github.com/Relintai/broken_seals_2d/blob/master/game/player/Body.gd) script requests the ui nodes from the [DataManager](https://github.com/Relintai/broken_seals_2d/blob/master/game/scripts/game_modules/DataManager.gd) singleton (like ` var ui = DataManager.request_instance(DataManager.PLAYER_UI_INSTANCE) `). And then the data manager will instance it's ` player_ui ` scene, and call all module's ` on_request_instance ` methods, while also passing the newly instanced scene to them.
+
+These module scripts are also responsible for collecting all spells and then setting them into the ESS singleton, so they are actually castable.
+
+This is the [module](https://github.com/Relintai/broken_seals_2d/blob/master/game/modules/entity_classes/naturalist/game_module.tres) for the naturalist, and it's [ResourceDB](https://github.com/Relintai/broken_seals_2d/blob/master/game/modules/entity_classes/naturalist/resource_db.tres), which will be merged into a central resource db for ESS. 
+
+Note that the module resources are sorted by their resource paths, so spells should always get the same id, on every platform every time.
+This is to optimize networkd spell casts.
 
 ## Editing the game
 
-In order for you to open the game in the editor you will need a custom built version, with a few engine modules built in.
+Grab the engine itself, and then open the project inside the `game` folder.
 
-You can check the releases tab to grab one, but since the project still changes a lot on the c++ side,
-if you get it there, also get the relevant game project.
+After the initial import it might need an editor restart, however everything should work after that.
 
-At the moment I don't have nightlies, I do plan on setting up something that could create them (github actions maybe?) eventually.
-
-If you want to use master, you will need to build the project yourself for now, but don't worry, Godot is surpisingly easy and 
-hassle free to compile! [See here.](#compiling)
-
-After you have the engine with the required modules, you can go ahead, and just open the project inside the `game` folder.
-
-Usually after the initial import it will need a restart, however everything should work after that.
-
-## The required engine modules
-
-These are the required engine modules, they are listed here for completeness`s sake, the project's setup script will install these for you automatically! See the [Compiling](#compiling) section.
-
-https://github.com/Relintai/world_generator.git \
-https://github.com/Relintai/entity_spell_system.git \
-https://github.com/Relintai/ui_extensions.git \
-https://github.com/Relintai/texture_packer.git \
-https://github.com/Relintai/godot_fastnoise.git \
-https://github.com/Relintai/thread_pool.git
+If you want to use master, you will likely need to build the editor for it if the c++ side had breaking changes since the last release.
 
 ## Compiling
 
-First make sure, that you have everything installed to be able to compile the engine. See: See the [official docs for compiling Godot](https://docs.godotengine.org/en/latest/development/compiling/index.html) for more info.
+First make sure, that you have everything installed to be able to compile the engine. 
+See the [official docs for compiling Godot](https://docs.godotengine.org/en/3.4/development/compiling/index.html) for more info. 
+My setup/compile script uses the same tools, so you don't need to install anything else.
+
+Even though the project doesn't use godot anymore, their docs are still sufficient.
 
 Now let's clone this repository:
 
@@ -43,7 +124,7 @@ Now let's clone this repository:
 
 cd into the new folder:
 
-``` cd broken_seals ```
+``` cd broken_seals_2d ```
 
 Now let's run the project's setup script, by calling scons without arguments.
 
@@ -53,11 +134,28 @@ This will clone and setup the engine, and all of the required modules into a new
 
 (If you want to use the github's ssh links append `repository_type=ssh` like ``` scons repository_type=ssh ```)
 
-Once it is done you can compile the engine, either by going into the engine folder and following the 
-[official docs](https://docs.godotengine.org/en/latest/development/compiling/index.html), or by using [build words](#build-words) without changing directories.
+Once it is done you can compile the engine.
 
-Once the build finishes you can find the editor executable inside the `./engine/bin/` folder, but you can also run it using the provided `editor.sh`,
-or `editor.bat` (These will create a copy, so you can compile while the editor is running). 
+To build the editor on windows with 4 threads run the following command:
+
+``` scons bew -j4 ```
+
+To build the editor on linux with 4 threads run the following command:
+
+``` scons bel -j4 ```
+
+I call this feature of the setup script build words. [See](#build-words).
+
+Once the build finishes you can find the editor executable inside the `./engine/bin/` folder.
+
+For convenience there is a provided `editor.sh`, or `editor.bat` for running it from the project's folder.
+These will create a copy, so you can even compile while the editor is running.
+
+Alternatively if you don't want to use build words, you can also just go into the engine folder:
+
+``` cd engine ```
+
+And compile godot as per the [official docs](https://docs.godotengine.org/en/latest/development/compiling/index.html).
 
 ### Build words
 
@@ -130,8 +228,8 @@ Note: to easily run the editor you can use the `editor.sh` or `editor.bat` in th
 
 #### Other
 
-Append `v` to pass the `vsproj=yes` parameter to the build script. This will generate Visual Studio project files.
-
+Append `v` to pass the `vsproj=yes` parameter to the build script. This will generate Visual Studio project files.\
+Append `c` to pass the `compiledb=yes` parameter to the build script. This is a new feature in 3.x to have this disabled by default to lessen compile times.
 
 #### Postfixes
 
@@ -158,6 +256,18 @@ I ran into this issue while building on a raspberry pi 4 with the x11 platform. 
 
 ``` scons bel_latomic -j4 ```
 
+##### strip
+
+Appends `debug_symbols=no` to the build command, which will strip the resulting binary from debug symbols.
+
+``` scons bel_strip -j4 ```
+
+##### threads
+
+Appends `threads_enabled=yes` to the build command. Useful for building the editor for html.
+
+``` scons bej_threads -j4 ```
+
 #### Scons cache, and sdk locations
 
 In order to use scons cache and to tell the build system where some of the required sdks are located you usually 
@@ -169,6 +279,24 @@ In order to solve this a build config file was added.
 
 If you want to use the config simply rename the provided `build.config.example` to `build.config`, and customize 
 the settings inside.
+
+### Manual Setup
+
+If you you don't want to use the setup script (or just want to know what it actually does), 
+this section will explain how to set everything up manually.
+
+First clone the engine:
+
+``` git clone https://github.com/Relintai/pandemonium_engine ```
+
+Now if you look at the [HEADS file](https://github.com/Relintai/broken_seals_2d/blob/master/HEADS).
+
+It contains the commit hashes for that particular revision for every module and the engine.
+The engine now contains all the modules, so at the moment only worry about the engine's commit hash.
+
+You need to go and checkout the proper commit for it.
+
+Now you can go ahead and compile the engine normally.
 
 ## Pulling upstream changes
 
