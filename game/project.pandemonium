@@ -191,22 +191,22 @@ _global_script_class_icons={
 @"PlayerGD": "",
 @"WorldGeneratorSettings": "",
 @"HumanoidCharacterBones2D": "",
-@"CharacterSkeleton2DGD": "",
-@"ItemVisualEntry2D": "",
-@"NetworkedPlayerGD": "",
-@"SpellEffectVisualBasic": "",
 @"SpellGD": "",
-@"UIWindowModule": "",
+@"SpellEffectVisualBasic": "",
+@"NetworkedPlayerGD": "",
+@"ItemVisualEntry2D": "",
+@"CharacterSkeleton2DGD": "",
 @"Zone": "",
-@"Main": "",
-@"ManaResource": "",
-@"Menu": "",
-@"UIGuiChildModule": "",
+@"UIWindowModule": "",
 @"WorldGenBaseResource": "",
-@"DisplayPlayerGD": "",
-@"HealthResource": "",
-@"ItemTemplateGD": "",
+@"UIGuiChildModule": "",
+@"Menu": "",
+@"ManaResource": "",
+@"Main": "",
 @"SubZone": "",
+@"ItemTemplateGD": "",
+@"HealthResource": "",
+@"DisplayPlayerGD": "",
 @"LayeredTextureMaker": ""
 }
 Node="input/actionbar_5_11"
@@ -218,10 +218,10 @@ data_manager/folder_settings="[{\"folder\":\".\",\"header\":\"\",\"name\":\"Root
 [application]
 
 config/name="Broken Seals 2D"
-config/description="An open source third person RPG "
+config/description="An open source 2D RPG ."
 run/main_scene="res://scenes/Main.tscn"
 config/icon="res://icon.png"
-config/version="0.2"
+config/version="0.2.9"
 
 [autoload]
 
