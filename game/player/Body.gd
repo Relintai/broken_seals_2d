@@ -87,6 +87,10 @@ var visibility_update_timer : float = 0
 
 var _nameplate : Node = null
 
+func _ready():
+	rpc_config("sset_position", MultiplayerAPI.RPC_MODE_REMOTE)
+	rpc_config("cset_position", MultiplayerAPI.RPC_MODE_REMOTE)
+
 func _enter_tree() -> void:
 	world = get_node(world_path) as Node2D
 	camera = get_node_or_null("Camera") as Camera2D
@@ -536,14 +540,14 @@ func on_diesd(entity):
 	#set_physics_process(false)
 	
  
-remote func sset_position(pposition : Vector2) -> void:
+func sset_position(pposition : Vector2) -> void:
 	if multiplayer.network_peer and multiplayer.is_network_server():
 		entity.vrpc("cset_position", position)
 		
 		if _controlled:
 			cset_position(position)
 		
-remote func cset_position(pposition : Vector2) -> void:
+func cset_position(pposition : Vector2) -> void:
 	pposition = pposition
 		
 		

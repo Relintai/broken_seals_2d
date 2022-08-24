@@ -28,4 +28,6 @@ addon_repositories = [
 third_party_addon_repositories = [
 ]
 
+custom_module_folders = ''
+
 slim_args = 'module_webm_enabled=no module_arkit_enabled=no module_visual_script_enabled=no module_gdnative_enabled=no module_mobile_vr_enabled=no module_theora_enabled=no module_xatlas_unwrap_enabled=no no_editor_splash=yes module_bullet_enabled=no module_camera_enabled=no module_csg_enabled=no module_denoise_enabled=no module_fbx_enabled=no module_gridmap_enabled=no module_hdr_enabled=no module_lightmapper_cpu_enabled=no module_raycast_enabled=no module_recast_enabled=no module_vhacd_enabled=no module_webxr_enabled=no'

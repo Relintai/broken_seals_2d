@@ -37,7 +37,7 @@ func _enter_tree():
 	if !Engine.editor_hint && generate_on_ready:
 		spawn(0, 0)
 		
-	VisualServer.canvas_item_set_sort_children_by_y(get_canvas_item(), true)
+	RenderingServer.canvas_item_set_sort_children_by_y(get_canvas_item(), true)
 
 func spawn(x : int, y : int):
 	chunks_clear()

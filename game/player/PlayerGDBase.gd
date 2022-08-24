@@ -38,6 +38,8 @@ func _ready():
 	
 	set_physics_process(true)
 	
+	rpc_config("set_position_remote", MultiplayerAPI.RPC_MODE_REMOTE)
+	
 func _physics_process(delta):
 #	if (multiplayer.has_network_peer() and multiplayer.is_network_server()) or not multiplayer.has_network_peer():
 	if multiplayer.has_network_peer() and multiplayer.is_network_server():
@@ -67,8 +69,8 @@ func update_visibility() -> void:
 	#warning-ignore:unassigned_variable
 	var used_to_see : Array = Array()
 	
-	for i in range(sees_gets_count()):
-		var ent : Entity = sees_gets(i)
+	for i in range(sees_get_count()):
+		var ent : Entity = sees_get(i)
 		
 		used_to_see.append(ent)
 		
@@ -90,7 +92,7 @@ func update_visibility() -> void:
 		if self.get_network_master() != 1:
 			ESS.entity_spawner.despawn_for(self, ent)
 		
-		sees_removes(ent)
+		sees_remove(ent)
 
 	for e in currenty_sees_filtered:
 		var ent : Entity = e as Entity
@@ -98,10 +100,10 @@ func update_visibility() -> void:
 		if self.get_network_master() != 1:
 			ESS.entity_spawner.spawn_for(self, ent)
 		
-		sees_adds(ent)
+		sees_add(ent)
 
 
-remote func set_position_remote(pos : Vector2) -> void:
+func set_position_remote(pos : Vector2) -> void:
 	if get_tree().is_network_server():
 		rpc("set_position_remote", pos)
 	#print(position)
