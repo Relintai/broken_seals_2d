@@ -117,9 +117,11 @@ func save() -> void:
 	ESS.entity_spawner.save_player(_player, _player_file_name)
 	
 func _generation_finished():
-
 	if show_loading_screen and not Engine.editor_hint:
-		get_node("..").hide_loading_screen()
+		var p : Node = get_node("..")
+		
+		if p && p.has_method("hide_loading_screen"):
+			get_node("..").hide_loading_screen()
 		
 #	if _player:
 #		_player.set_physics_process(true)
