@@ -71,8 +71,8 @@ func load_character(file_name: String) -> void:
 
 	spawn(world_pos.x / (cell_size_x * chunk_size_x), world_pos.y / (cell_size_y * chunk_size_x))
 	
-	#if spawn_mobs:
-	#	generate()
+	if spawn_mobs:
+		generate()
 
 func _create_chunk(x, y, chunk):
 	if !chunk:
@@ -106,9 +106,17 @@ func _create_chunk(x, y, chunk):
 	return ._create_chunk(x, y, chunk)
 
 func generate() -> void:
-	for x in range(-2, 2):
-		for y in range(-2, 2):
-			ESS.entity_spawner.spawn_mob(1, 50, Vector2(x * 200, y * 200))
+	if Engine.is_editor_hint():
+		return
+	
+#	for x in range(-2, 2):
+#		for y in range(-2, 2):
+#			ESS.entity_spawner.spawn_mob(1, 50, Vector2(x * 200, y * 200))
+	
+	for i in range(10):
+		var x : float = rand_range(1, 4)
+		var y : float = rand_range(1, 4)
+		ESS.entity_spawner.spawn_mob(1, 50, Vector2(x * 200, y * 200))
 
 func save() -> void:
 	if _player == null or _player_file_name == "":
