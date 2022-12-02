@@ -1,7 +1,7 @@
 tool
 extends Tree
 
-export(int, "Continent,Zone,Sub Zone") var class_types : int = 0
+export(int, "Continent,Zone,Sub Zone,Sub Zone Prop") var class_types : int = 0
 
 var edited_resource : WorldGenBaseResource = null
 var name_edited_resource : WorldGenBaseResource = null
@@ -11,9 +11,15 @@ var _ignore_changed_event : bool = false
 var _plugin : EditorPlugin = null
 var _undo_redo : UndoRedo = null
 
-func _init():
-	connect("item_activated", self, "on_item_activated")
+signal request_item_edit(world_gen_base_resource)
 
+func _init():
+	if !is_connected("item_edited", self, "on_item_edited"):
+		connect("item_edited", self, "on_item_edited")
+	
+	if !is_connected("button_pressed", self, "on_tree_button_pressed"):
+		connect("button_pressed", self, "on_tree_button_pressed")
+	
 func set_plugin(plugin : EditorPlugin) -> void:
 	_plugin = plugin
 	_undo_redo = _plugin.get_undo_redo()
@@ -49,6 +55,8 @@ func add_item(item_name : String = "") -> void:
 			e = Zone.new()
 		elif cn == "SubZone":
 			e = SubZone.new()
+		elif cn == "SubZoneProp":
+			e = SubZoneProp.new()
 			
 	elif ti.has_meta("file"):
 		var cls = load(ti.get_meta("file"))
@@ -60,6 +68,14 @@ func add_item(item_name : String = "") -> void:
 		return
 	
 	e.resource_name = item_name
+	
+	var r : Rect2 = edited_resource.get_rect()
+	var rs : Vector2 = r.size
+	r.size.x /= 5.0
+	r.size.y /= 5.0
+	r.position = rs / Vector2(2, 2)
+	r.position -= r.size / Vector2(2, 2)
+	e.set_rect(r)
 	
 	#edited_resource.add_content(e)
 	#remove_content_entry
@@ -90,6 +106,8 @@ func refresh() -> void:
 			
 			item.set_text(0, n)
 			item.set_meta("res", d)
+			item.add_button(0, get_theme_icon("Edit", "EditorIcons"), -1, false, "Edit")
+			item.set_editable(0, true)
 
 func set_edited_resource(res : WorldGenBaseResource)-> void:
 	if edited_resource:
@@ -108,13 +126,6 @@ func add_button_pressed() -> void:
 
 func name_dialog_ok_pressed() -> void:
 	add_item($NameDialog/VBoxContainer/LineEdit.text)
-
-func name_edit_dialog_ok_pressed() -> void:
-	if name_edited_resource:
-		name_edited_resource.resource_name = $NameEditDialog/VBoxContainer/LineEdit.text
-		name_edited_resource.emit_changed()
-		name_edited_resource = null
-		on_resource_changed()
 
 func delete_button_pressed() -> void:
 	var item : TreeItem = get_selected()
@@ -160,8 +171,16 @@ func on_resource_changed() -> void:
 		
 	call_deferred("refresh")
 
-func on_item_activated() -> void:
-	var item : TreeItem = get_selected()
+func on_tree_button_pressed(item: TreeItem, column: int, id: int) -> void:
+	var resource : WorldGenBaseResource = item.get_meta("res")
+	
+	if !resource:
+		return
+		
+	emit_signal("request_item_edit", resource)
+
+func on_item_edited() -> void:
+	var item : TreeItem = get_edited()
 	
 	if !item:
 		return
@@ -171,5 +190,12 @@ func on_item_activated() -> void:
 	if !name_edited_resource:
 		return
 		
-	$NameEditDialog/VBoxContainer/LineEdit.text = name_edited_resource.resource_name
-	$NameEditDialog.popup_centered()
+	_undo_redo.create_action("WE: Renamed Entry")
+	_undo_redo.add_do_method(name_edited_resource, "set_name", item.get_text(0))
+	_undo_redo.add_undo_method(name_edited_resource, "set_name", name_edited_resource.resource_name)
+	_undo_redo.commit_action()
+	
+#	name_edited_resource.resource_name = item.get_text(0)
+	name_edited_resource.emit_changed()
+	name_edited_resource = null
+	on_resource_changed()

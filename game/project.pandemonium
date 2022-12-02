@@ -139,6 +139,11 @@ _global_script_classes=[ {
 "language": @"GDScript",
 "path": "res://addons/world_generator/resources/subzone.gd"
 }, {
+"base": "Resource",
+"class": @"SubZoneProp",
+"language": @"GDScript",
+"path": "res://addons/world_generator/resources/sub_zone_prop.gd"
+}, {
 "base": "GameModule",
 "class": @"UIGuiChildModule",
 "language": @"GDScript",
@@ -175,22 +180,23 @@ _global_script_classes=[ {
 "path": "res://addons/world_generator/resources/zone.gd"
 } ]
 _global_script_class_icons={
-@"CharacterAtlasEntry2D": "",
-@"Continent": "",
-@"EntityAIGD": "",
-@"EntityDataGD": "",
-@"WorldGenWorld": "",
-@"ItemVisual2D": "",
-@"MobGD": "",
-@"PlayerMaster": "",
-@"SpeedResource": "",
-@"WorldGenRaycast": "",
+@"HumanoidCharacterBones2D": "",
+@"LayeredTextureMaker": "",
 @"CharacterAtlas2D": "",
 @"CharacterSkeketonAttachPoint": "",
 @"GameModule": "",
 @"PlayerGD": "",
 @"WorldGeneratorSettings": "",
-@"HumanoidCharacterBones2D": "",
+@"ItemVisual2D": "",
+@"MobGD": "",
+@"PlayerMaster": "",
+@"SpeedResource": "",
+@"WorldGenRaycast": "",
+@"CharacterAtlasEntry2D": "",
+@"Continent": "",
+@"EntityAIGD": "",
+@"EntityDataGD": "",
+@"WorldGenWorld": "",
 @"SpellGD": "",
 @"SpellEffectVisualBasic": "",
 @"NetworkedPlayerGD": "",
@@ -207,7 +213,7 @@ _global_script_class_icons={
 @"ItemTemplateGD": "",
 @"HealthResource": "",
 @"DisplayPlayerGD": "",
-@"LayeredTextureMaker": ""
+@"SubZoneProp": ""
 }
 Node="input/actionbar_5_11"
 
