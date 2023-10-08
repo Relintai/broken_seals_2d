@@ -97,7 +97,7 @@ func _enter_tree() -> void:
 	
 	#character_skeleton = get_node(character_skeleton_path)
 	#entity = get_node("..")
-	#entity.set_character_skeleton(character_skeleton)
+	#entity.character_skeleton_set(character_skeleton)
 #	entity.connect("notification_ccast", self, "on_notification_ccast")
 	entity.connect("diesd", self, "on_diesd")
 	entity.connect("onc_entity_controller_changed", self, "on_c_controlled_changed")
@@ -117,7 +117,7 @@ func on_centity_data_changed(entd : EntityData):
 			character_skeleton.queue_free()
 		
 		character_skeleton = sk
-		entity.set_character_skeleton(character_skeleton)
+		entity.character_skeleton_set(character_skeleton)
 		
 		if character_skeleton:
 			add_child(character_skeleton)
@@ -197,7 +197,7 @@ func process_input(delta: float) -> void:
 		
 	input_dir = key_dir + mouse_dir + touchpad_dir + mouse_move_dir
 	
-	var state : int = entity.getc_state()
+	var state : int = entity.state_getc()
 	
 	if state & EntityEnums.ENTITY_STATE_TYPE_FLAG_ROOT != 0 or state & EntityEnums.ENTITY_STATE_TYPE_FLAG_STUN != 0:
 		input_dir = Vector2()
@@ -218,7 +218,7 @@ func process_input(delta: float) -> void:
 
 
 func process_movement(delta : float) -> void:
-	var state : int = entity.getc_state()
+	var state : int = entity.state_getc()
 	
 	if state & EntityEnums.ENTITY_STATE_TYPE_FLAG_ROOT != 0 or state & EntityEnums.ENTITY_STATE_TYPE_FLAG_STUN != 0:
 		moving = false
@@ -253,7 +253,7 @@ func process_movement(delta : float) -> void:
 
 
 func process_movement_player(delta : float) -> void:
-	var state : int = entity.getc_state()
+	var state : int = entity.state_getc()
 	
 	if state & EntityEnums.ENTITY_STATE_TYPE_FLAG_ROOT != 0 or state & EntityEnums.ENTITY_STATE_TYPE_FLAG_STUN != 0:
 		moving = false
@@ -289,7 +289,7 @@ func process_movement_player(delta : float) -> void:
 	
 
 func process_movement_mob(delta : float) -> void:
-	var state : int = entity.getc_state()
+	var state : int = entity.state_getc()
 	
 	if state & EntityEnums.ENTITY_STATE_TYPE_FLAG_ROOT != 0 or state & EntityEnums.ENTITY_STATE_TYPE_FLAG_STUN != 0:
 		moving = false

@@ -47,7 +47,7 @@ class_name NetworkedPlayerGD
 ##var animation_run : bool = false
 #
 #func _ready() -> void:
-#	animation_tree = get_character_skeleton().get_animation_tree()
+#	animation_tree = character_skeleton_get().get_animation_tree()
 #
 #	if animation_tree != null:
 #		anim_node_state_machine = animation_tree["parameters/playback"]
