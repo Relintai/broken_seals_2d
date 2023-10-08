@@ -78,7 +78,7 @@ func attack(delta):
 	
 	if target == null:
 		owner.ai_state = EntityEnums.AI_STATE_REGENERATE
-		owner.get_body().target_movement_direction = Vector2()
+		owner.body_get().target_movement_direction = Vector2()
 		return
 	
 	var cast : bool = false
@@ -118,16 +118,16 @@ func attack(delta):
 					break
 	
 	if owner.cast_is_castings():
-		owner.get_body().target_movement_direction = Vector2()
+		owner.body_get().target_movement_direction = Vector2()
 		return
 	
-	owner.get_body().target_movement_direction = Vector2()
+	owner.body_get().target_movement_direction = Vector2()
 	
-	var dir : Vector2 = target.get_body().position - owner.get_body().position
+	var dir : Vector2 = target.body_get().position - owner.body_get().position
 	var l = dir.length()
 	
 	if l > 2.5:
-		owner.get_body().target_movement_direction = Vector2(dir.x, dir.y)
+		owner.body_get().target_movement_direction = Vector2(dir.x, dir.y)
 
 func sort_spells_by_rank(a, b):
 	if a == null or b == null:

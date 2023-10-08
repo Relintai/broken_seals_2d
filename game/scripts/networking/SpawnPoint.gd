@@ -92,7 +92,7 @@ func spawn():
 
 func set_terrarin_player():
 	pass
-#	terrarin.set_player(player.get_body() as Spatial)
+#	terrarin.set_player(player.body_get() as Spatial)
 
 func _on_host_button_clicked():
 	get_tree().connect("network_peer_connected", self, "_network_peer_connected")

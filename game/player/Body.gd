@@ -106,7 +106,7 @@ func _enter_tree() -> void:
 	on_c_controlled_changed()
 	
 	transform = entity.get_transform_2d(true)
-	entity.set_body(self)
+	entity.body_set(self)
 	set_physics_process(true)
 
 func on_centity_data_changed(entd : EntityData):

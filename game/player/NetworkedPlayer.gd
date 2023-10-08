@@ -110,8 +110,8 @@ class_name NetworkedPlayerGD
 ##	if get_network_master() != 1:
 ##		print(str(get_network_master()) + "npcset")
 #
-#	get_body().position = pposition
-#	get_body().rotation = protation
+#	body_get().position = pposition
+#	body_get().rotation = protation
 #
 #func _moved() -> void:
 #

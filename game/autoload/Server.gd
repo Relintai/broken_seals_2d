@@ -223,4 +223,4 @@ func set_terrarin_player():
 	var terrarin : Node = get_node("/root/GameScene/VoxelWorld")
 	
 	if terrarin.has_method("set_player"):
-		terrarin.set_player(local_player_master.player.get_body())
+		terrarin.set_player(local_player_master.player.body_get())
